@@ -1,0 +1,544 @@
+<tab>Hj-Lib Constructs
+<accordion>Actor
+<text>Description</text>
+<accordion>Actor
+Actor<Message_Type>
+<text>A concurrent, message-processing component of a parallel message-passing system. An actor can process messages, send messages, change local state, and create new actors.</text>
+<link>Actor
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/runtime/actors/Actor.html
+</link>
+<list>Used With
+<text>finish</text>
+</list>
+<list>Related Constructs
+<text>Selector<Message_Type>: A selector has multiple mailboxes, while an actor only has one.</text>
+</list>
+<table>Method
+Description
+start()
+Allows the actor to process messages.
+process(T message)
+This method must be implemented by the user and specifies an actor’s “behavior” when processing messages. Messages are processed one at a time. 
+send(T message)
+Sends a message to the actor (can be performed by actor or non-actor). For example, anActor.send(aMessage) sends aMessage to anActor. The order of messages is preserved between the same sender and receiver.
+pause()
+Changes the state of the actor so that it will no longer process messages until resume() is called. However, sent messages will still accumulate to be processed later. This is a non-blocking operation. Using pause and resume around asynchronous tasks spawned in the process method produces the same result as using a finish construct. Pause and resume should be used instead of a finish for better performance. (TODO: only better performance for work-sharing run-time? cooperative too?)
+resume()
+Changes the state of the actor so that it will continue to process messages. See pause() for notes on performance.
+exit()
+Signals intention for the actor to terminate. Actors should be terminated by calling exit in the process method if some stop condition is sent to the actor.
+</table>
+</accordion>
+<accordion>Selector
+Selector<Message_Type>
+<text>A special actor with multiple numbered mailboxes, that can enable or disable the processing of messages from any mailbox.</text>
+<link>Selector
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/experimental/actors/Selector.html
+</link>
+<list>Used With
+<text>finish</text>
+</list>
+<list>Related Constructs
+<text>Actor<Message_Type></text>
+</list>
+</accordion>
+</accordion>
+<accordion>Async/Finish
+<text>Description</text>
+<accordion>Async
+async
+<text>Starts a new child task that executes in parallel. The task is only guaranteed to complete by the end of the surrounding finish (if a finish is present).</text>
+<link>Javadoc
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#async-edu.rice.hj.api.HjSuspendable-
+</link>
+<list>Used With
+<text>finish</text>
+</list>
+<list>Related Constructs
+<text>asyncPhased</text>
+<text>asyncAwait</text>
+<text>Thread<text>
+</list>
+</accordion>
+<accordion>Async with Phaser(s)
+asyncPhased
+<text>Starts a new asynchronous task phased on a subset of its parent’s phasers with specified modes. Used for point to point synchronization.</text>
+<link>asyncPhased
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#asyncPhased-edu.rice.hj.api.HjPhaserPair-edu.rice.hj.api.HjSuspendable-</link>
+<list>Used With
+<text>Phaser</text>
+<text>finish</text>
+<text>next</text>
+<list>Related Constructs
+<text>async</text>
+<text>asyncAwait</text>
+</list>
+</accordion>
+<accordion>Data-Driven Async
+asyncAwait
+<text>Executes a new asynchronous task after all registered data driven futures become available (i.e., after there is a put on the data driven future).</text>
+<link>asyncAwait
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#asyncAwait-edu.rice.hj.api.HjFuture-edu.rice.hj.api.HjSuspendable-
+</link>
+<list>Used With
+<text>finish</text>
+<text>HjDataDrivenFuture</text>
+</list>Related Constructs
+<text>async</text>
+<text>asyncPhased</text>
+<accordion>Finish
+finish
+<text>Creates a new finish scope to execute the wrapped statements. A finish guarantees that all spawned asyncs and futures enclosed in the statement’s scope terminate before continuing.</text>
+<link>finish
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#finish-edu.rice.hj.api.HjSuspendable-</link>
+<list>Used With
+<text>async</text>
+<text>asyncPhased</text>
+<text>asyncAwait</text>
+<text>forasync</text>
+<text>forasyncPhased</text>
+<list>Related Constructs
+<text>ForkJoinTask</text>
+<text>finish (accum_1, …)</text>
+<text>finish (eureka)</text>
+</accordion>
+<accordion>
+<accordion>Eureka
+<accordion>Eureka Object 
+HjEureka
+<text>A construct that supports nondeterminism in applications, such as searches, where many speculative computations can be aborted as soon as a result has been found. Eureka objects safely store the result and abort other asynchronous tasks executing in the same finish scope. Eureka objects are created using the factory methods newSearchEureka, newExtremaEureka, newCountEureka, and newTimerEureka.</text>
+<link>HjEureka
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/experimental/api/HjEureka.html</link>
+<table>Method
+Description
+offer(value)
+Attempts to update the eureka object with a new value that is closer to the desired result.
+check()
+Checks whether the locally known value can lead to a better estimate than the globally known value. If true, then the method returns normally. If the locally known value is guaranteed to produce a worse result, the method aborts the current task.
+</table>
+<list>Used With
+<text>finish (eureka)</text>
+<text>async</text>
+<text>newSearchEureka</text>
+<text>newExtremaEureka</text>
+<text>newCountEureka</text>
+<text>newTimerEureka</text>
+</list>
+<list>Related Constructs
+<text>HjFinishAccumulator</text>
+</accordion>
+<accordion>Finish Eureka
+finish (eureka)
+<text>Creates a new finish scope that is registered to a eureka object. A finish eureka guarantees that all spawned asyncs and futures enclosed in the statements scope have terminated, either by completing execution or by a resolved eureka.</text>
+<link>finish
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/experimental/ModuleZ.html#finish-edu.rice.hj.experimental.api.HjEureka-edu.rice.hj.api.HjSuspendable-</link>
+<list>Used With
+<text>HjEureka</text>
+</list>
+<list>Related Constructs
+<text>finish</text>
+</accordion>
+<accordion>Search Eureka 
+newSearchEureka
+<text>Creates a eureka object that causes early termination after the first offer. Useful for searches that have a single, known result.</text>
+<link>newSearchEureka
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/experimental/ModuleZ.html#newSearchEureka-T-</link>
+<list>Used With
+<text>HjEureka</text>
+</list>
+</accordion>
+<accordion>Min/Max Search Eureka
+newExtremaEureka
+<text>Creates a eureka object that tries to maximize its current value, based off a given comparator.</text>
+<link>newExtremaEureka
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/experimental/ModuleZ.html#newExtremaEureka-T-java.util.Comparator-</link>
+<list>Used With
+<text>HjEureka</text>
+</accordion>
+<accordion>Count Eureka
+newCountEureka
+<text>Creates a eureka object that gives the first k results that match a query.</text>
+<link>newCountEureka
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/experimental/ModuleZ.html#newCountEureka-long-int-</link>
+<list>Used With
+<text>HjEureka</text>
+</list>
+</accordion>
+<accordion>Timed Eureka
+newTimerEureka
+<text>Creates a eureka object that will search for a specified amount of time (in milliseconds). This eureka will terminate early if the search completes OR it times out.</text>
+<link>newTimerEureka
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/experimental/ModuleZ.html#newTimerEureka-int-</link>
+<list>Used With
+<text>HjEureka</text>
+</list>
+</accordion>
+<accordion>Time-Out Eureka
+newEngineEureka
+<text>Creates a eureka object that will search for a specified amount of time units. This eureka will terminate early if the search completes OR it times out.</text>
+<link>newTimerEureka
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/experimental/ModuleZ.html#newEngineEureka-int-</link>
+<list>Used With
+<text>HjEureka</text>
+</list>
+</accordion>
+</accordion>
+<accordion>For
+<accordion>Parallel Iteration - Implicit Finish
+forall
+<text>Iterates over a range of values in parallel by spawning a new async for each iteration. forall is semantically the same as a standard for loop with an async and finish, but allows for different input parameter types. forall guarantees that all parallel iterations have completed before execution continues.</text>
+<linkWith 1D Region
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forall-edu.rice.hj.api.HjRegion.HjRegion1D-edu.rice.hj.api.HjSuspendingProcedureInt1D-</link>
+<link>With 2D Region
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forall-edu.rice.hj.api.HjRegion.HjRegion2D-edu.rice.hj.api.HjSuspendingProcedureInt2D-</link>
+<link>With Start/End
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forall-int-int-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<link>Nested Start/End
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forall-int-int-int-int-edu.rice.hj.api.HjSuspendingProcedureInt2D-</link>
+<link>With Iterable
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forall-java.lang.Iterable-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<list>Related Constructs
+<text>Async / Finish</text>
+<text>forallChunked</text>
+<text>forasync</text>
+<text>forallPhased</text>
+</accordion>
+<accordion>Parallel Iteration - No Implicit Finish 
+forasync
+<text>Iterates over a range of values in parallel by spawning a new async for each iteration. forall is semantically the same as a standard for loop with an async, but allows for different input parameter types. All parallel iterations are NOT guaranteed to have completed before execution continues.</text>
+<link>With 1D Region
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forasync-edu.rice.hj.api.HjRegion.HjRegion1D-edu.rice.hj.api.HjSuspendingProcedureInt1D-</link>
+<link>With 2D Region
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forasync-edu.rice.hj.api.HjRegion.HjRegion2D-edu.rice.hj.api.HjSuspendingProcedureInt2D-</link>
+<link>With Start/End:http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forasync-int-int-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<link>Nested with Start/End
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forasync-int-int-int-int-edu.rice.hj.api.HjSuspendingProcedureInt2D-</link>
+<link>With Iterable
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forasync-java.lang.Iterable-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<list>Used With
+<text>finish</text>
+</list>
+<list>Related Constructs
+<text>forall</text>
+<text>forasyncChunked</text>
+<text>async</text>
+</accordion>Parallel Chunked Iteration - Implicit Finish
+forallChunked
+<text>Iterates over a range of values in parallel by spawning new child tasks (asyncs) to run multiple iterations (chunks). Chunk size can be user specified, but does not need to be. forallChunked includes an implicit finish for all spawned tasks, meaning all parallel iterations are guaranteed to have completed before execution continues.</text>
+<link>With Chunk Size
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forallChunked-int-int-int-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<link>With 1D Region
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forallChunked-edu.rice.hj.api.HjRegion.HjRegion1D-edu.rice.hj.api.HjSuspendingProcedureInt1D-</link>
+<link>With 2D Region
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forallChunked-edu.rice.hj.api.HjRegion.HjRegion2D-edu.rice.hj.api.HjSuspendingProcedureInt2D-</link>
+<link>With Start/End
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forallChunked-int-int-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<link>Nested Start/End
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forallChunked-int-int-int-int-edu.rice.hj.api.HjSuspendingProcedureInt2D-</link>
+<list>Related Constructs
+<text>forall</text>
+<text>forasyncChunked</text>
+<text>Async / Finish</text>
+</list>
+</accordion>Parallel Chunked Iteration - No Implicit Finish
+forasyncChunked
+<text>Iterates over a range of values in parallel by spawning new child tasks (asyncs) to run multiple iterations (chunks). Chunk size can be user specified, but does not need to be. forasyncChunked does not include an implicit finish, meaning all parallel iterations are NOT guaranteed to have completed before execution continues.</text>
+<link>With Chunk Size
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forasyncChunked-int-int-int-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<link>With 1D Region
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forasyncChunked-edu.rice.hj.api.HjRegion.HjRegion1D-edu.rice.hj.api.HjSuspendingProcedureInt1D-</link>
+<link>With 2D Region
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forasyncChunked-edu.rice.hj.api.HjRegion.HjRegion2D-edu.rice.hj.api.HjSuspendingProcedureInt2D-</link>
+<link>With 3D Region:http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forasyncChunked-edu.rice.hj.api.HjRegion.HjRegion3D-edu.rice.hj.api.HjSuspendingProcedureInt3D-</link>
+<link>With Start/End
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forasyncChunked-int-int-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<list>Used With
+<text>finish</text>
+</list>
+<list>Related Constructs
+<text>forasync</text>
+<text>forallChunked</text>
+<text>async</text>
+</list>
+<accordion>Phaser-Registered Iteration - WIth Implicit Finish
+forallPhased
+<text>Iterates over a range of values in parallel with a phaser implicitly registered to each iteration. Like forall, each iteration</text>
+<link>With Start/End
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#forallPhased-int-int-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<link>With Iterable
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#forallPhased-java.lang.Iterable-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<list>Used With
+<text>next</text>
+<text>signal</text>
+</list>
+<list>Related Constructs
+<text>forall</text>
+<text>forasyncPhased</text>
+<text>CountDownLatch</text>
+<text>Phasers</text>
+</list>
+</accordion>
+<accordion>Phaser-Registered Iteration - No Implicit Finish
+forasyncPhased
+<text>Iterates over a range of values in parallel with a phasers registered to the spawned asynchronous iterations. All parallel iterations are NOT guaranteed to have completed before execution continues.</text>	
+<link>Implicit Phaser Registration
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#forasyncPhased-int-int-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<link>Explicit Phaser Registration
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#forasyncPhased-int-int-java.util.List-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<link>Explicit Phasers and Iterable
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#forasyncPhased-java.lang.Iterable-java.util.List-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<list>Used WIth
+<text>finish</text>
+<text>next</text>
+<text>signal</text>
+</list>
+<list>Related Constructs
+<text>forallPhased</text>
+<text>Phasers</text>
+</accordion>
+<accordion>Barrier
+next
+<text>Advance each phaser that the current task is registered on to its next phase, in accordance with the task’s registration mode. next() will wait on each phaser that the task is registered on with a wait capability (WAIT, SIG_WAIT, and SIG_WAIT_SINGLE).</text>
+<link>next
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#next--</link>
+<list>Used With
+<text>forallPhased</text>
+<text>forasyncPhased</text>
+<text>asyncPhased</text>
+<text>signal</text>
+</list>
+<list>Related Constructs
+<text>signal</text>
+</list>
+</accordion>
+<accordion>Signal
+signal
+<text>When a task performs a signal operation, it notifies all the phasers it is registered on that it has completed all the work expected by other tasks (shared work) in the current phase. Later, when the task performs a next operation, the next degenerates to a wait since a signal has already been performed in the current phase. Any (local, task-specific) work between signal and next is overlapped with the phase transition, creating a “fuzzy barrier.” Essentially, a signal allows work to be done while at barrier. This is done by giving a task work between signal and next.</text>
+<link>signal
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#signal--</link>
+<list>Used With
+<text>forallPhased</text>
+<text>forasyncPhased</text>
+<text>asyncPhased</text>
+<text>next</text>
+<list>Related Constructs
+<text>next</text>
+</list>
+</accordion>
+<accordion>Sequential Iteration
+forseq
+<text>Sequentially iterates over a range of values. forseq is semantically the same as a standard java for loop, but allows for different input parameter types.</text>
+<link>WIth 1D Region
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forseq-edu.rice.hj.api.HjRegion.HjRegion1D-edu.rice.hj.api.HjSuspendingProcedureInt1D-</link>
+<link>WIth 2D Region:http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forseq-edu.rice.hj.api.HjRegion.HjRegion2D-edu.rice.hj.api.HjSuspendingProcedureInt2D-</link>
+<link>With 3D Region
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forseq-edu.rice.hj.api.HjRegion.HjRegion3D-edu.rice.hj.api.HjSuspendingProcedureInt3D-</link>
+<link>With Start/End
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forseq-int-int-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<link>Nested with Start/End
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forseq-int-int-int-int-edu.rice.hj.api.HjSuspendingProcedureInt2D-</link>
+<link>WIth Iterable
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#forseq-java.lang.Iterable-edu.rice.hj.api.HjSuspendingProcedure-</link>
+<list>Related Constructs
+<link>for
+https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html</link>
+</list>
+</accordion>
+</accordion>
+<accordion>Finish Accumulators
+<accordion>Finish Accumulator Object
+HjFinishAccumulator
+<text>An object that is shared by multiple asynchronous tasks and can be updated in a safe (data-race free) way.</text>
+<link>HjFinishAccumulator
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjFinishAccumulator.html</link>
+<table>Method
+Description
+get()
+Returns the result stored in the accumulator visible to the currently executing task. When no put is performed on the accumulator, get returns the identity element for the operator (ex: 0 for SUM, 1 for PROD).
+put (double val)
+transmits a double value for the accumulator to accumulate via the specified operation.
+</table>
+<list>Used With
+<text>newFinishAccumulator</text>
+<text>finish (accum_1, …)</text>
+</list>
+<list>Related Constructs
+<text>isolated</text>
+<text>AtomicInteger</text>
+<text>HjEureka</text>
+</list>
+</accordion>
+<accordion>Finish Accumulator Creation
+newFinishAccumulator
+<text>Creates a finish accumulator (HjFinishAccumulator), an object that does operations on values from multiple asynchronous tasks in a data-race free way. The operation (HjOperator) is specified on construction.</text>
+<link>newFinishAccumulator
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#newFinishAccumulator-edu.rice.hj.api.HjOperator-java.lang.Class-</link>
+<list>Used WIth
+<text>HjFinishAccumulator<text>
+<link>HjOperator
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjOperator.html</link>
+</list>
+</accordion>
+<accordion>Finish Accumulator
+finish (accum_1, ..)
+<text>A finish with accumulators registered within its scope. NOTE: Non-owner tasks cannot register accumulators within a finish.
+Example of BAD code:
+// Parent task allocates accumulator acc
+FinishAccumulator acc = newFinishAccumulator(...);
+async (() -> {
+// Child task cannot register acc with finish
+finish (acc, () -> { async a.put(1); });
+}</text>
+<link>finish
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#finish-java.util.List-edu.rice.hj.api.HjSuspendable-</link>
+<list>Used With
+<text>HjFinishAccumulator</text>
+</list>
+<list>Related Constructs
+<text>finish</text>
+</list>
+</accordion>
+</accordion>
+<accordion>Future
+<accordion>Future
+future
+<text>Creates an asynchronous task that stores a result that can be accessed later.</text>
+<link>future
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#future-edu.rice.hj.api.HjSuspendingCallable-</link>
+<list>Used With
+<text>asyncAwait</text>
+</list>
+<table>Method
+Description
+get()
+Returns the result generated by the future task. If the result is not yet available, this method blocks until it is.
+</table>
+<list>Related Constructs
+<text>Async / Finish</text>
+<text>Data Driven Future</text>
+</list>
+</accordion>
+<accordion>Data Driven Future Object
+HjDataDrivenFuture
+<text>An object that acts as a container to synchronizes tasks. In this synchronization, one task waits for a data value to become available while the other generates the value. Data driven futures (DDFs) provide a way to express data-dependences among dynamic tasks. 
+Note: It is illegal to perform a get() operation on an empty DDF. Therefore, get() should only be called on a DDF within an asyncAwait clause, which will wait for all registered DDFs to be full before executing. 
+</text>
+<link>HjDataDrivenFuture
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjDataDrivenFuture.html</link>
+<table>Method
+Description
+put(T value)
+Associates the specified value with the data driven future
+get()
+Returns the value wrapped in the data driven future.
+</table>
+<list>Used With
+<text>newDataDrivenFuture</text>
+<text>asyncAwait</text>
+</list>
+<list>Related Constructs
+<text>future</text>
+</list>
+</accordion>
+<accordion>Data Driven Future Creation
+newDataDrivenFuture
+<text>Creates a data driven future (HjDataDrivenFuture), an object that acts as a container to synchronizes tasks. In this synchronization, one task waits for a data value to become available. There is no constraint on which task provides the value.</text>
+<link>newDataDrivenFuture
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#newDataDrivenFuture--</link>
+<list>Used WIth
+<text>HjDataDrivenFuture</text>
+</list>
+</accordion>
+</accordion>
+<accordion>Places/Regions
+<accordion>Task Affinity
+HjPlace
+<text>Allows programmer to specify affinity among async tasks. A destination place may be specified for where the task should execute. Data locality can be controlled by assigning two tasks with the same data affinity to execute in the same place. A new place is created using the place() factory method. The value of a task’s place can be retrieved using the method call here().</text>
+<link>HjPlace
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjPlace.html</link>	<link>place
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#place-int-</link>
+<link>here
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#here--</link>
+<list>Used With
+<link>asyncNbAt
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#asyncNbAt-edu.rice.hj.api.HjPlace-edu.rice.hj.api.HjRunnable-</link>
+</list>
+</accordion>
+<accordion>Iteration Regions
+HjRegion
+<text>An object that represents a k-dimensional space of points. HjRegions are used to specify loop bounds, and are created with the factory methods newRectangularRegion1D, newRectangularRegion2D, and newRectangularRegion3D.</text>
+<link>HjRegion
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjRegion.html</link>
+<link>newRectangularRegion1D
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#newRectangularRegion1D-int-int-</link>
+<link>newRectangularRegion2D
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#newRectangularRegion2D-int-int-int-int-</link>
+<link>newRectangularRegion3D
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#newRectangularRegion3D-int-int-int-int-int-int-</link>
+<list>Used With
+<text>forseq</text>
+<text>forall</text>
+<text>forasync</text>
+<text>forallChunked</text>
+<text>forasyncChunked</text>
+</list>
+</accordion>
+</accordion>
+<accordion>Isolated
+<accordion>Isolated
+isolated
+<text>Isolated statements are used to identify regions of parallel tasks that should be executed sequentially (to avoid data races). Two tasks executing isolated statements must perform them in mutual exclusion. If an isolated is registered to specific objects, mutual exclusion is only guaranteed for instances of isolated statements that have a non-empty intersection in their object lists.</text>
+<lin>isolated
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module2.html#isolated-edu.rice.hj.api.HjRunnable-</link>
+<link>isolated on object
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module2.html#isolated-java.lang.Object-edu.rice.hj.api.HjRunnable-</link>
+<list>Related Constructs
+<text>isolatedWIthReturn</text>
+<text>Synchronized</text>
+<text>HjFinishAccumulator</text>
+</list>
+</accordion>
+<accordion>Isolated with a Return Value
+isolatedWithReturn
+<text>This acts the same as the isolated construct, but has a return value.</text>
+<link>isolatedWithReturn
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module2.html#isolatedWithReturn-edu.rice.hj.api.HjCallable-</link>
+<link>isolatedWithReturn on object
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module2.html#isolatedWithReturn-java.lang.Object-edu.rice.hj.api.HjCallable-</link>
+<list>Related Constructs
+<text>isolated</text>
+</accordion>
+</accordion>
+<accordion>Phaser
+<accordion>Phaser Object
+HjPhaser
+<text>A coordination construct that unifies collective and point-to-point synchronizations. Phasers allow for more optimized barrier synchronization while guaranteeing dead-lock freedom and phase-ordering. Phasers can be registered in one of four modes (HjPhaserMode) that define the capabilities of the activity with respect to the phaser. A call to the phaser’s signal method tells the phaser that it is done with whatever it intended to do during this phase of the phaser.</text>
+<link>HjPhaser
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjPhaser.html</link>
+<list>Used With
+<text>newPhaser</text>
+<text>HjPhaserMode</text>
+<text>asyncPhased</text>
+<text>forasyncPhased</text>
+</list>
+</accordion>
+<accordion>Phaser Creation
+newPhaser
+<text>Creates a new phaser (HjPhaser), a coordination construct that unifies collective and point-to-point synchronizations. Phasers allow for more optimized barrier synchronization while guaranteeing dead-lock freedom and phase-ordering. Phasers can be registered in one of four modes (HjPhaserMode) that define the capabilities of the activity with respect to the phaser.</text>
+<link>newPhaser
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#newPhaser-edu.rice.hj.api.HjPhaserMode-</link>
+<link>newPhaser with Time Limit
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#newPhaser-edu.rice.hj.api.HjPhaserMode-int-</link>
+<list>Used With
+<text>HjPhaser</text>
+<text>HjPhaserMode</text>
+</list>
+</accordion>
+<accordion>Phaser Modes
+HjPhaserMode
+<text>The allowed phaser modes (SIG, SIG_WAIT, SIG_WAIT_SINGLE, and WAIT)</text>
+<link>HjPhaserMode
+http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjPhaserMode.html</link>
+</accordion>
+</accordion>
+</tab>
