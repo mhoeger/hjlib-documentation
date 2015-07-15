@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tab name="Environment &amp; Configuration">
+	<category name="Cooperative vs. Blocking Runtimes">
+		<description>HJlib is a pure Java 8 library implementation of various parallel constructs. It relies on the use of Java 8 lambdas to simplify writing parallel programs. This library is responsible for scheduling and synchronizing an unbounded number of async tasks on a fixed number of processors (“worker threads”). Two scheduling runtime systems in HJlib are:</description>
+		<construct name="Cooperative Runtime">
+			<description>When a blocking construct is encountered, the blocked code is made into a separate task that creates continuations for blocking constructs in HJlib (such as the end of a finish scope), and uses a fixed number of worker threads to switch between async tasks and continuations that are ready to execute. The advantage of the cooperative runtime is that it can support large numbers of async tasks.</description>
+		</construct>
+		<construct name="Blocking Runtime">
+			<description>Creates a new worker thread each time a blocking operation is performed. This incurs less overhead on programs with few blocking operations. However, it can easily run out of memory when large numbers of blocking operations are performed, due to the creation of a large number of worker threads.</description>
+		</construct>
+	</category>
+	<category name="launchHabaneroApp">
+		<description>Launches the fragment of code to be run by the habanero runtime.</description>
+		<javadoc>http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#launchHabaneroApp-edu.rice.hj.api.HjSuspendable-</javadoc>
+	</category>
+	<category name="HjSystemProperty">
+		<description>A set of HJ-Lib configuration options.</description>
+		<javadoc>http://www.google.com/url?q=http%3A%2F%2Fwww.cs.rice.edu%2F~vs3%2Fhjlib%2Fdoc%2Fedu%2Frice%2Fhj%2Fruntime%2Fconfig%2FHjSystemProperty.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHu1WcN_z4T91rrGO_sMQufpASI3A</javadoc>
+		<flag name="abstractMetrics" default="false">Whether to enable abstract execution metrics.</flag>
+		<flag name="diagnoseDeadlocks" default="false">Whether to track deadlock situations when all workers become idle.</flag>
+		<flag name="eventLogging" default="false">Whether to enable event logging.</flag>
+		<flag name="executionGraph" default="false">Whether to display the execution graph.</flag>
+		<flag name="fjAsyncMode" default="true">Whether to use asyncMode in the fork-join pool.</flag>
+		<flag name="isolatedLocks" default="# of available processors">Number of locks to use for object-based isolation.</flag>
+		<flag name="isolatedLockType" default="ordered">Whether the lock is ordered or unordered.</flag>
+		<flag name="locationInName" default="false">Uses call stack to determine HJ construct names.</flag>
+		<flag name="maxThreads" default="min(128, 10 * # of available processors)">Maximum number of worker threads to use.</flag>
+		<flag name="nbAsyncOpt" default="false">Whether to enable non-blocking task execution before blocking workers.</flag>
+		<flag name="numPlaces" default="1">Number of places to use.</flag>
+		<flag name="numWorkers" default="# of available processors">Number of workers to use.</flag>
+		<flag name="phaserBusyWait" default="1">Number of iterations in busy wait before resorting to thread-blocking operations in phaser wait instructions.</flag>
+		<flag name="runtime" default="fj">The HJ runtime to use.</flag>
+		<flag name="showBuildVersion" default="false">Whether to show build version.</flag>
+		<flag name="showRuntimeStats" default="false">Whether to show executor service stats.</flag>
+		<flag name="showWarning" default="false">Whether to show warning/debug messages.</flag>
+		<flag name="speedUpGraph" default="false">Whether to display the speedup graph.</flag>
+		<flag name="trackDeadlocks" default="false">Whether to track deadlock situations when all workers become idle.</flag>
+		<method name="setProperty(Object value)">Set the property used by the Habanero runtime for this flag.</method>
+		<method name="enableAbstractMetricsFlags()">Sets the following flags to true: abstractMetrics, executionGraph, speedUpGraph, showBuildVersion.</method>
+		<method name="enableDebuggingFlags()">Sets the following flags to true: diagnoseDeadlocks, trackDeadlocks, showWarning, locationInName, showBuildVersion.</method>
+		<method name="enablePerformanceAnalysisFlags()">Sets the following flags to true: showRuntimeStats, showBuildVersion.</method>
+	</category>
+</tab>
