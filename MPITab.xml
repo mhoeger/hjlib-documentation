@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tab name="Message-Passing Interface">
+	<description>A platform for Single Program Multiple Data (SPMD) parallel computing on distributed memory architectures, with an API for sending and receiving messages. In a parallel program that uses the SPMD model, a single program is executed on multiple processing elements. Each processing element has its own address space. A “rank”, or ID, is used to determine what computation is done on what data by a given processing element. Java support for MPI is available from mpiJava.</description>
+    <javadoc>http://hpjava.org/mpiJava/docs</javadoc>
+    <method name="MPI.Init(args)">Initialize MPI in each process.</method>
+    <method name="MPI.Finalize()">Terminate MPI.</method>
+    <method name="MPI.COMM_WORLD.Size()">Returns the number of processes in COMM_WORLD communicator, which is the default communicator.</method>
+    <method name="MPI.COMM_WORLD.Rank()">Returns the rank of the current process in COMM_WORLD communicator, which is the default communicator.</method>
+    <method name="Send(Object buf, int offset, int count, Datatype type, int dst, int tag)">A blocking operation that sends a message. “buf” is the data buffer, “offset” is the offset where the message is located within the buffer, “count” is the size of the message, and “type” is the type of the message being sent. “dst” is the rank of the destination process, while “tag” is an arbitrary value.</method>
+    <method name="Recv(Object buf, int offset, int count, Datatype type, int dst, int tag)">A blocking operation that receives a message. “buf” is the data buffer, “offset” is the offset where the message is located within the buffer, “count” is the size of the message, and “type” is the type of the message being sent. “src” is the rank of the source process, while “tag” is used to select between several incoming messages, so that the call waits for a message with a matching tag to arrive.</method>
+    <method name="Sendrecv(Object sendbuf, int sendOffset, int sendCount, Datatype sendType, int dst, int sendTag, Object recvBuf, int recvOffset, int recvCount, Datatype recvType, int src, int recvTag)">A blocking operation that simultaneously sends and receives messages. This can be more efficient than individual sends and receives and can be used to avoid some deadlock conditions.</method>
+    <method name="Isend(Object buf, int offset, int count, Datatype type, int dst, int tag)">A non-blocking send operation. Returns an object of type Request, which can be used with Wait(), Waitall(), and Waitany().</method>
+    <method name="Irecv(Object buf, int offset, int count, Datatype type, int src, int tag)">A non-blocking receive operation. Returns an object of type Request, which can be used with Wait(), Waitall(), and Waitany().</method>
+    <method name="Wait()">Waits for a non-blocking send or receive operation to complete.</method>
+    <method name="Waitall(Request [] array_of_request)">Blocks until all of the operations associated with the active requests in the array have completed.</method>
+    <method name="Waitany(Request [] array_of_request)">Blocks until one of the operations associated with the active requests in the array has completed.</method>
+    <method name="Bcast(Object buf, int offset, int count, Datatype type, int root)">Broadcasts a message from the process with rank “root” to all processes of the group. “buf” is the data buffer, “offset” is the offset where the message is located within the buffer, “count” is the size of the message, and “type” is the type of the message being sent.</method>
+    <method name="Gather(Object sendbuf, int sendoffset, int sendcount, Datatype sendtype, Object recvbuf, int recvoffset, int recvcount, Datatype recvtype, int root)">Each process sends the contents of its send buffer to the process with rank “root”.</method>
+    <method name="Allgather(Object sendbuf, int sendoffset, int sendcount, Datatype sendtype, Object recvbuf, int recvoffset, int recvcount, Datatype recvtype)">Similar to Gather(...), but all processes receive the result, not just the root.</method>
+    <method name="Scatter(Object sendbuf, int sendoffset, int sendcount, Datatype sendtype, Object recvbuf, int recvoffset, int recvcount, Datatype recvtype, int root)">Inverse of the operation Gather(...).</method>
+    <method name="Barrier()">Blocks the caller process until all processes in the group have called it.</method>
+    <method name="Reduce(Object sendbuf, int sendoffset, Object recvbuf, int recvoffset, int count, Datatype datatype, Op op, int root)">Combines elements in input buffer (“sendbuf”) of each process using the reduce operation and return the combined value in the output buffer (“recvbuf”) of the root process.</method>
+    <method name="Allreduce(Object sendbuf, int sendoffset, Object recvbuf, int recvoffset, int count, Datatype datatype, Op op)">Similar to Reduce(...), but the result appears in the receive buffer (“recvbuf”) of all processes in the group.</method>
+    <method name="Scan(Object sendbuf, int sendoffset, java.lang.Object recvbuf, int recvoffset, int count, Datatype datatype, Op op)">Perform a prefix reduction on data distributed across the group.</method>
+    <method name="Alltoall(Object sendbuf, int sendoffset, int sendcount, Datatype sendtype, Object recvbuf, int recvoffset, int recvcount, Datatype recvtype)">Extension of Allgather(...) to the case where each process sends distinct data to each of the receivers.</method>
+    <datatypes>
+        <item>MPI.BYTE</item>
+        <item>MPI.CHAR</item>
+        <item>MPI.SHORT</item>
+        <item>MPI.BOOLEAN</item>
+        <item>MPI.INT</item>
+        <item>MPI.LONG</item>
+        <item>MPI.FLOAT</item>
+        <item>MPI.DOUBLE</item>
+        <item>MPI.OBJECT</item>
+    </datatypes>
+    <op name="MPI_MAX">Maximum for data types int, long, float, and double.</op>
+    <op name="MPI_MIN">Minimum for data types int, long, float, and double.</op>
+    <op name="MPI_SUM">Sum for data types int, long, float, and double.</op>
+    <op name="MPI_PROD">Product for data types int, long, float, and double.</op>
+    <op name="MPI_LAND">Logical AND for data types int and long.</op>
+    <op name="MPI_BAND">Bitwise AND for data types byte, int and long.</op>
+    <op name="MPI_LOR">Logical OR for data types int and long.</op>
+    <op name="MPI_BOR">Bitwise OR for data types byte, int and long.</op>
+    <op name="MPI_LXOR">Logical XOR for data types int and long.</op>
+    <op name="MPI_BXOR">Bitwise XOR for data types byte, int and long.</op>
+    <op name="MPI_MAXLOC">Maximum value, minimum location for (value, location) data pairs.</op>
+    <op name="MPI_MINLOC">Minimum value, minimum location for (value, location) data pairs.</op>
+</tab>
