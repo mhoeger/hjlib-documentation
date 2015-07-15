@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Make sure all <, >, & characters in the contents are changed to &lt;, &gt;, &amp; respectively -->
+
+<!-- Quotation marks also not allowed in attributes but I don't think that should be a problem. -->
+
+<!-- Example for constructs-style tab -->
 <tab name="HJ-Lib Constructs">
     <category name="Actors">
         <description>etc etc etc</description>
@@ -14,6 +20,7 @@
     </category>
 </tab>
 
+<!-- Example for MPI tab -->
 <tab name="MPI">
     <description>etc etc</description>
     <javadoc>http://hpjava.org/mpiJava/docs</javadoc>

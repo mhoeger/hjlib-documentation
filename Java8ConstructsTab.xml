@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tab>Standard Java 8 Constructs
+	<category name="Atomic Variables">
+		<description>Description</description>
+		<construct name="Atomic Integer" java="AtomicInteger">
+			<description>An int value that can be safely updated in a parallel program. While there are atomic classes representing integer and long data types, there are no atomic classes representing float and double data types. If needed, Float.floatToIntBits(float) and Float.intBitsToFloat(int) conversions, as well as Double.doubleToLongBits(double) and Double.longBitsToDouble(long) conversions, can be used to store float and double values atomically in an AtomicInteger or AtomicLong.</description>
+			<javadoc name="AtomicInteger">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicInteger.html</javadoc>
+			<method name="get()">Returns the current value.</method>
+			<method name="set(int newValue)">Atomically sets the value to “newValue”.</method>
+			<method name="getAndSet(int newValue)">Atomically sets the value to “newValue” and returns the old value.</method>
+			<method name="compareAndSet(int expect, int update)">Atomically sets the value to “update” if the current value equals “expect”.</method>
+			<method name="addAndGet(int delta)">Atomically adds “delta” to the current value and returns the post-addition value.</method>
+			<method name="getAndAdd(int delta)">Atomically adds “delta” to the current value and returns the pre-addition value.</method>
+			<method name="getAndDecrement()">Atomically decrements the current value by one and returns the pre-decrement value.</method>
+			<method name="getAndIncrement()">Atomically increments the current value by one and returns the pre-increment value.</method>
+			<method name="decrementAndGet()">Atomically decrements the current value by one and returns the post-decrement value.</method>
+			<method name="incrementAndGet()">Atomically increments the current value by one and returns the post-increment value.</method>
+		</construct>
+		<construct name="Atomic Long" java="AtomicLong">
+			<description>A long value that can be safely updated in a parallel program. While there are atomic classes representing integer and long data types, there are no atomic classes representing float and double data types. If needed, Float.floatToIntBits(float) and Float.intBitsToFloat(int) conversions, as well as Double.doubleToLongBits(double) and Double.longBitsToDouble(long) conversions, can be used to store float and double values atomically in an AtomicInteger or AtomicLong.</description>
+			<javadoc name="AtomicLong">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicLong.html</javadoc>
+			<method name="get()">Returns the current value.</method>
+			<method name="set(long newValue)">Atomically sets the value to “newValue”.</method>
+			<method name="getAndSet(long newValue)">Atomically sets the value to “newValue” and returns the old value.</method>
+			<method name="compareAndSet(long expect, long update)">Atomically sets the value to “update” if the current value equals “expect”.</method>
+			<method name="addAndGet(long delta)">Atomically adds “delta” to the current value and returns the post-addition value.</method>
+			<method name="getAndAdd(long delta)">Atomically adds “delta” to the current value and returns the pre-addition value.</method>
+			<method name="getAndDecrement()">Atomically decrements the current value by one and returns the pre-decrement value.</method>
+			<method name="getAndIncrement()">Atomically increments the current value by one and returns the pre-increment value.</method>
+			<method name="decrementAndGet()">Atomically decrements the current value by one and returns the post-decrement value.</method>
+			<method name="incrementAndGet()">Atomically increments the current value by one and returns the post-increment value.</method>
+		</construct>
+		<construct name="Atomic Reference" java="AtomicReference&lt;V&gt;>">
+			<description>An object reference that can be safely updated in a parallel program.</description>
+			<javadoc name="AtomicReference">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicReference.html</javadoc>
+			<method name="get()">Returns the current value.</method>
+			<method name="set(V newValue)">Atomically sets the value to “newValue”.</method>
+			<method name="getAndSet(V newValue)">Atomically sets the value to “newValue” and returns the old value.</method>
+			<method name="compareAndSet(V expect, V update)">Atomically sets the value to “update” if the current value equals “expect”.</method>
+		</construct>
+	</category>
+	<category name="Concurrent Collections">
+		<construct name="Concurrent Hash Map" java="ConcurrentHashMap&lt;K,V&gt;">
+			<description>A thread-safe version of &lt;a href=”https://docs.oracle.com/javase/8/docs/api/java/util/Hashtable.html”&gt;Hashtable&lt;/a&gt;.</description>
+			<javadoc name="ConcurrentHashMap">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html</javadoc>
+			<method name="get(Object key)">Returns the value to which “key” is mapped, or null if there is no mapping for “key”.</method>
+			<method name="put(K key, V value)">Maps “key” to “value”.</method>
+			<method name="remove(Object key)">Removes “key” and its corresponding value.</method>
+			<method name="containsKey(Object key)">Tests if “key” is a key in this ConcurrentHashMap.</method>
+			<method name="containsValue(Object value)">Tests if one or more keys map to “value” in this ConcurrentHashMap.</method>
+		</construct>
+		<construct name="ConcurrentLinkedQueue" java="ConcurrentLinkedQueue&lt;E&gt;">
+			<description>A thread-safe version of a first-in-first-out (FIFO) queue based on linked nodes.</description>
+			<javadoc name="ConcurrentLinkedQueue">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentLinkedQueue.html</javadoc>
+			<method name="add(E e)">Inserts element “e” at the tail of this queue.</method>
+			<method name="peek()">Returns, but does not remove, the head of this queue, or returns null if this queue is empty.</method>
+			<method name="poll()">Returns and removes the head of this queue, or return null if this queue is empty.</method>
+			<method name="remove(Object o)">Removes a single instance of element “o” from this queue, if it is present. Returns true if the queue changed as a result.</method>
+		</construct>
+	</category>
+	<category name="Fork-Join">
+		<construct name="ForkJoinPool">
+			<description>A ForkJoinPool contains threads that can be used to execute ForkJoinTasks. By default, the number of threads in a given ForkJoinPool is equal to the number of available processors.</description>
+			<javadoc name="ForkJoinPool">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html</javadoc>
+			<usedwith>ForkJoinTask</usedwith>
+			<usedwith>RecursiveAction</usedwith>
+			<usedwith>RecursiveTask</usedwith>
+		</construct>
+		<construct name="ForkJoinTask">
+			<description>A ForkJoinTask is an abstract class for tasks run within a ForkJoinPool. If a ForkJoinTask is not explicitly submitted to a ForkJoinPool, it uses the commonPool by default.</description>
+			<javadoc name="ForkJoinTask">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinTask.html</javadoc>
+			<method name="fork()">Arranges to asynchronously execute this task in the ForkJoinPool the current task is running in.</method>
+			<method name="join()">Returns the result of the computation when it is done.</method>
+			<method name="invoke()">Commences performing the task, awaits its completion, and returns its result or throws an unchecked RuntimeException if the underlying computation did so.</method>
+			<method name="invokeAll(ForkJoinTask&lt;?&gt; t1, ForkJoinTask&lt;?&gt; t2)">Forks the given tasks and returns when both tasks are completed. If any task encounters an exception, this exception is rethrown and the other task may be cancelled.</method>
+			<usedwith>ForkJoinPool</usedwith>
+		</construct>
+		<construct name="RecursiveAction">
+			<description>A subclass of ForkJoinTask that executes a task with no return values.</description>
+			<javadoc name="RecursiveAction">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/RecursiveAction.html</javadoc>
+			<method name="compute()">An abstract method that is used to define the main computation performed.</method>
+			<method name="fork()">Arranges to asynchronously execute this task in the ForkJoinPool the current task is running in.</method>
+			<method name="join()">Returns the result of the computation when it is done.</method>
+			<method name="invoke()">Commences performing the task, awaits its completion, and returns its result or throws an unchecked RuntimeException if the underlying computation did so.</method>
+			<method name="invokeAll(ForkJoinTask&lt;?&gt; t1, ForkJoinTask&lt;?&gt; t2)">Forks the given tasks and returns when both tasks are completed. If any task encounters an exception, this exception is rethrown and the other task may be cancelled.</method>
+			<usedwith>ForkJoinPool</usedwith>
+		</construct>
+		<construct name="RecursiveTask">
+			<description>A subclass of ForkJoinTask that executes a task with a return value.</description>
+			<javadoc name="RecursiveTask">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/RecursiveTask.html</javadoc>
+			<method name="compute()">An abstract method that is used to define the main computation performed.</method>
+			<method name="fork()">Arranges to asynchronously execute this task in the ForkJoinPool the current task is running in.</method>
+			<method name="join()">Returns the result of the computation when it is done.</method>
+			<method name="invoke()">Commences performing the task, awaits its completion, and returns its result or throws an unchecked RuntimeException if the underlying computation did so.</method>
+			<method name="invokeAll(ForkJoinTask&lt;?&gt; t1, ForkJoinTask&lt;?&gt; t2)">Forks the given tasks and returns when both tasks are completed. If any task encounters an exception, this exception is rethrown and the other task may be cancelled.</method>
+			<usedwith>ForkJoinPool</usedwith>
+		</construct>
+	</category>
+	<category name="Java Threads">
+		<construct name="Thread">
+			<description>The execution of a Java program begins with an instance of Thread created by the Java Virtual Machine (JVM). Multiple instances of Thread can be used to construct parallel programs. HJ-Lib runtime uses Java threads as workers (typically one worker per core).</description>
+			<javadoc name="Thread">https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html</javadoc>
+			<method name="start()">Causes this thread to begin execution.</method>
+			<method name="join()">Waits for this thread to die.</method>
+		</construct>
+		<construct name="ThreadPoolExecutor">
+			<description>Executes the given task from the task queue using one of its internally pooled threads. The thread pool contains a varying number of threads determined by the variables corePoolSize and maximumPoolSize.</description>
+			<javadoc name="ThreadPoolExecutor">http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ThreadPoolExecutor.html</javadoc>
+			<method name="getPoolSize()">Returns the number of threads currently in the pool.</method>
+			<method name="getTaskCount()">Returns the number of tasks that have ever been scheduled for execution.</method>
+			<method name="getCompletedTaskCount()">Returns the number of tasks that have been completed.</method>
+			<method name="shutdown()">Causes a shutdown of the executor, in which previously submitted tasks are executed to completion, but no new tasks are accepted.</method>
+		</construct>
+		<construct name="Wait" java="wait()">
+			<description>Causes the current thread to wait until another thread invokes the notify() or notifyAll() methods for this object. In effect, the thread releases the object lock and is placed in the wait set of the object lock. The thread state is also set to blocked. This method should always be used in a loop, since interrupts and spurious wake-ups are possible.</description>
+			<javadoc name="wait()">https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#wait()</javadoc>
+			<usedwith>synchronized</usedwith>
+		</construct>
+		<construct name="Notify" java="notify()">
+			<description>Causes an arbitrary thread from the wait set to be moved into the entry set. The selected thread is then set to Runnable. As a result, this thread can compete for the object lock again.</description>
+			<javadoc name="notify()">https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#notify()</javadoc>
+			<usedwith>synchronized</usedwith>
+		<construct name="Notify All" java="notifyAll()">
+			<description>Moves all threads from the wait set into the entry set, allowing each thread to have equal likelihood of being the next one to acquire the object lock.</description>
+			<javadoc name="notifyAll()">https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#notifyAll()</javadoc>
+			<usedwith>synchronized</usedwith>
+		</construct>
+	</category>
+	<category name="Locks">
+		<construct name="ReentrantLock">
+			<description>A lock that may be used in recursive methods and will not cause a deadlock. If one thread successfully acquires this lock by calling lock() or tryLock(), no other thread can acquire it until the current thread releases it by calling unlock().</description>
+			<javadoc name="ReentrantLock">http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/locks/ReentrantLock.html</javadoc>
+			<method name="lock()">Acquires the lock if it is not held by another thread. If the lock is held by another thread, then the current thread lies dormant until the lock has been acquired.</method>
+			<method name="tryLock()">Immediately acquires the lock if it is not held by another thread and returns true. If the lock is held by another thread, then this method returns false immediately.</method>
+			<method name="unlock()">Releases this lock. If the current thread is not the holder of this lock, IllegalMonitorStateException is thrown instead.</method>
+		</construct>
+		<construct name="ReadWriteLock">
+			<description>Consists of a pair of locks: readLock and writeLock. The readLock can be acquired by multiple threads as long as writeLock is free, while writeLock can only be acquired if both readLock and writeLock are free.</description>
+			<javadoc name="ReadWriteLock">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/locks/ReadWriteLock.html</javadoc>
+			<method name="readLock()">Returns the lock used for reading.</method>
+			<method name="writeLock()">Returns the lock used for writing.</method>
+		</construct>
+		<construct name="ReentrantReadWriteLock">
+			<description>A version of ReadWriteLock that may be used in recursive methods and will not cause a deadlock.</description>
+			<javadoc name="ReentrantReadWriteLock">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/locks/ReentrantReadWriteLock.html</javadoc>
+			<method name="readLock()">Returns the lock used for reading.</method>
+			<method name="writeLock()">Returns the lock used for writing.</method>
+		</construct>
+	</category>
+	<category name="Synchronized">
+		<construct name="Synchronized Statement">
+			<description>Acquires the lock associated with the given Java object before executing the code enclosed in the synchronized statement. Once completed, or if an exception is thrown, the lock is released.</description>
+			<javadoc name="Synchronized Statement">https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html</javadoc>
+			<usedwith>wait()</usedwith>
+			<usedwith>notify()</usedwith>
+			<usedwith>notifyAll()</usedwith>
+		</construct>
+		<construct name="Synchronized Method">
+			<description>Acquires the lock associated with the given Java object before executing the method’s code. Once completed, or if an exception is thrown, the lock is released.</description>
+			<javadoc name="Synchronized Method">https://docs.oracle.com/javase/tutorial/essential/concurrency/syncmeth.html</javadoc>
+			<usedwith>wait()</usedwith>
+			<usedwith>notify()</usedwith>
+			<usedwith>notifyAll()</usedwith>
+		</construct>
+	</category>
+	<category name="Synchronizer">
+		<construct name="Semaphore">
+			<description>Conceptually, semaphores serve as “permit” holders. However, the semaphore only maintains the current count of available permits, since no actual permit objects are used. Semaphores are usually used to restrict the number of threads that can access a resource at one point in time.</description>
+			<javadoc name="Semaphore">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Semaphore.html</javadoc>
+			<method name="acquire()">Acquires a permit from this semaphore, blocking until one is available or the thread is interrupted.</method>
+			<method name="acquire(int permits)">Acquires “permits” number of permits from this semaphore, blocking until all are available or the thread is interrupted.</method>
+			<method name="tryAcquire()">Acquires a permit from this semaphore only if one is available at the time of invocation (does not block).</method>
+			<method name="tryAcquire(int permits)">Acquires “permits” number of permits from this semaphore only if they are all available at the time of invocation (does not block).</method>
+			<method name="release()">Releases a permit and returns it to the semaphore.</method>
+			<method name="release(int permits)">Releases “permits” number of permits and returns them to the semaphore.</method>
+		</construct>
+		<construct name="CountDownLatch">
+			<description>A counter that releases waiting threads when it reaches zero, allowing one or more threads to wait until a set of operations performed in other threads completes.</description>
+			<javadoc name="CountDownLatch">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CountDownLatch.html</javadoc>
+			<method name="countDown()">Decrements the count of the latch and releases all waiting threads if the count reaches zero.</method>
+			<method name="await()">Causes the current thread to wait until the latch has counted down to zero, unless the thread is interrupted.</method>
+			<method name="getCount()">Returns the current count.</method>
+		</construct>
+	</category>
+	<category name="Volatile Variables">
+		<description>Guarantees visibility, but is not thread-safe. Therefore, it provides a “light” form of synchronization.</description>
+		<javadoc name="volatile">https://docs.oracle.com/javase/tutorial/essential/concurrency/atomic.html</javadoc>
+		<usedwith>synchronized</usedwith>
+	</category>
+</tab>
