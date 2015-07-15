@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tab name="Java Profiling">
+	<instruction name="VisualVM Installation">
+		<step>Go to https://visualvm.java.net/download.html and follow the instructions there to download the software.</step>
+		<step>Go to Tools > Plugins > Available Plugins.</step>
+		<step>Check the checkbox next to Startup Profiler, click Install, and go through the Plugin Installer.</step>
+	</instruction>
+	<instruction name="ASM Installation">
+		<step>If you do not have ASM All in your Maven repository, please download the JAR file from the following link: http://mvnrepository.com/artifact/org.ow2.asm/asm-all/5.0.3</step>
+	</instruction>
+	<instruction name="Running an HJ-Lib program with VisualVM">
+		<step>Go to Applications > Profile Startup.</step>
+		<step>Click continue.</step>
+		<step>In the “Start profiling from classes:” box, define the class you want to profile. VisualVM will only profile methods in this class and any inner classes. If left empty, it will profile all methods that are executed. Click continue.</step>
+		<step>Copy the agentpath argument and click Profile.
+			<note>If a Warning window pops up with the message “Profiled application started too soon”, you ran the program before the profiler. Terminate the program and then click OK. If you are getting this warning but have not started a program, go to your Home directory and type “cd .nbprofiler” into the command line. List this directory’s contents. There should be a file named after the port that is used in the application configuration specifications of Profile Startup. Delete this file and click Profile again.</note>
+		</step>
+		<step>Run the HJ program using the command line with the following format:
+			<note>For Macs: java -cp &lt;path to classes folder&gt;:&lt;path to HJlib JAR file&gt;:&lt;path to ASM All JAR file&gt; &lt;javaagent argument&gt; &lt;agentpath argument&gt; &lt;class name&gt;
+				Example: java -cp /Users/Alitha/Desktop/322/hw_1/target/classes:/Users/Alitha/.m2/repository/edu/rice/hjlib-cooperative/0.1.4-SNAPSHOT/hjlib-cooperative-0.1.4-SNAPSHOT.jar:/Users/Alitha/.m2/repository/org/ow2/asm/asm-all/5.0.3/asm-all-5.0.3.jar -javaagent:/Users/Alitha/.m2/repository/edu/rice/hjlib-cooperative/0.1.4-SNAPSHOT/hjlib-cooperative-0.1.4-SNAPSHOT.jar -agentpath:/Applications/VisualVM.app/Contents/Resources/visualvm/profiler/lib/deployed/jdk16/mac/libprofilerinterface.jnilib=/Applications/VisualVM.app/Contents/Resources/visualvm/profiler/lib,5140 edu.rice.comp322.Homework1</note>
+			<note>For Windows: java -cp &lt;path to classes folder&gt;;&lt;path to HJlib JAR file&gt;;&lt;path to ASM All JAR file&gt; &lt;javaagent argument&gt; &lt;agentpath argument&gt; &lt;class name&gt;
+				Example: java -cp /Users/Alitha/Desktop/322/hw_1/target/classes;/Users/Alitha/.m2/repository/edu/rice/hjlib-cooperative/0.1.4-SNAPSHOT/hjlib-cooperative-0.1.4-SNAPSHOT.jar;/Users/Alitha/.m2/repository/org/ow2/asm/asm-all/5.0.3/asm-all-5.0.3.jar -javaagent:/Users/Alitha/.m2/repository/edu/rice/hjlib-cooperative/0.1.4-SNAPSHOT/hjlib-cooperative-0.1.4-SNAPSHOT.jar -agentpath:/Applications/VisualVM.app/Contents/Resources/visualvm/profiler/lib/deployed/jdk16/mac/libprofilerinterface.jnilib=/Applications/VisualVM.app/Contents/Resources/visualvm/profiler/lib,5140 edu.rice.comp322.Homework1
+			</note>
+		</step>
+		<step>VisualVM should automatically open a profiling session for the application once it starts up. There is some overhead when profiling a program, so it may take some time for your program to run to completion.</step>
+	</instruction>
+	<instruction name="Further Reading">
+		<step>https://blogs.oracle.com/nbprofiler/entry/profiling_with_visualvm_part_1</step>
+		<step>https://blogs.oracle.com/nbprofiler/entry/profiling_with_visualvm_part_2</step>
+	</instruction>
+</tab>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tab name="Overview">
+	<category name="Unit 1: Task-level Parallelism">
+		<item>Async</item>
+		<item>Finish</item>
+	</category>
+	<category name="Unit 2: Functional Parallelism">
+		<item>Future</item>
+		<item>Finish Accumulators</item>
+	</category>
+	<category name="Unit 3: Loop-level Parallelism">
+		<item>Parallel Iteration with Implicit Finish</item>
+		<item>Parallel Chunked Iteration with Implicit Finish</item>
+		<item>Phaser-Registered Iteration with Implicit Finish</item>
+		<item>Barrier</item>
+		<item>HjRegion</item>
+	</category>
+	<category name="Unit 4: Dataflow Synchronization &amp; Pipelining">
+		<item>Data-Driven Futures</item>
+		<item>Data-Driven Async</item>
+		<item>Phasers</item>
+		<item>Async with Phasers</item>
+	</category>
+	<category name="Unit 5: Sharing State Between Threads">
+		<item>Isolated</item>
+		<item>Isolated with Return Value</item>
+		<item>Concurrent Collections</item>
+		<item>Eurekas</item>
+		<item>Atomic Variables</item>
+	</category>
+	<category name="Unit 6: Actors">
+		<item>Actor</item>
+		<item>Selector</item>
+	</category>
+	<category name="Unit 7: Threads &amp; Locks">
+		<item>Java Threads</item>
+		<item>ForkJoin</item>
+		<item>Synchronized Statements &amp; Methods</item>
+		<item>Reentrant Lock</item>
+		<item>Read-Write Lock</item>
+		<item>Semaphore</item>
+		<item>Countdown Latch</item>
+	</category>
+	<category name="Special Topics">
+		<item>Places</item>
+		<item>MPI</item>
+		<item>Volatile Variables</item>
+	</category>
+</tab>
