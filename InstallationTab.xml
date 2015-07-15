@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tab name="Installation Guide">
+	<instruction name="Java 8 Setup">
+		<step>You may already have Java 8 installed on your computer. To check whether you have Java 8 installed on your machine, go to the command line and type the following java -version. If you see something as follows:
+			$ java -version
+			java version "1.8.0_25"
+			Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
+			Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
+		</step>
+		<step>If the Java version shows 1.8.*, you already have Java 8 installed on your machine. If you do have Java 8 already installed on your machine, please skip to Maven setup.</step>
+		<step>If you do not already have it installed, you will need a Java 8 installation on your machine and have your JAVA HOME and PATH point to the new installation. Java 8 can be downloaded and installed from the &lt;a href="https://www.google.com/url?q=https%3A%2F%2Fjdk8.java.net%2Fdownload.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFlsqVvnoz-qITcoDkNupatvNqr6Q"&gt;Oracle website&lt;/a&gt;
+			<note>For Macs: To set up environment variables on your machine, a .bash_profile needs to be created and edited; please refer to this &lt;a href="http://www.google.com/url?q=http%3A%2F%2Fhathaway.cc%2Fpost%2F69201163472%2Fhow-to-edit-your-path-environment-variables-on-mac&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHbLR1sjYCFd-d7leAp4Sq526997A"&gt;website&lt;/a&gt; for instructions. Here is an example of what should be on your machine’s .bash_profile:
+				JAVA8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home
+				export JAVA_HOME=${JAVA8_HOME}
+				export PATH=$JAVA_HOME/bin:$PATH
+			</note>
+			<note>For Windows: To set up environment variables on your machine, please refer to this &lt;a href="http://www.google.com/url?q=http%3A%2F%2Fwww.computerhope.com%2Fissues%2Fch000549.htm&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEgjd6yBvzOSImlIE9icZz6SwVLRQ"&gt;website&lt;/a&gt;.
+			</note>
+		</step>
+	</instruction>
+	<instruction name="Maven Setup">
+		<step>Maven is a build automation tool used primarily for Java projects. Projects using Maven or other build systems are easiest to use as they simplify compiling, building, and testing the project. In addition, major IDEs like IntelliJ and Eclipse have excellent support via maven plugins which simplifies the development process. Dependency management is one of the areas where Maven excels; for our purposes, this means that we will save a lot of effort in configuring the projects to set up dependencies on HJ-lib, JUnit, and other jars. Hence, for the labs and assignments in COMP 322, we will distribute maven project templates to be used by students to complete their work.</step>
+		<step>Maven is a Java tool, so you must have Java installed in order to proceed. Next, follow the instructions on the maven site to install maven. Please remember to install a version that is 3.1.1 or later. During installation have your M2 HOME, MAVEN HOME and PATH point to the new installation. Here is an example of what should be in a Mac machine’s .bash_profile:
+			export M2_HOME=/Users/shamsimam/dev/apache-maven-3.1.1
+			export MAVEN_HOME=/Users/shamsimam/dev/apache-maven-3.1.1
+			export PATH=$PATH:$MAVEN_HOME/bin
+		</step>
+		<step>Once installed, open a new command prompt and run mvn --version to verify that it is correctly installed. Maven has been successfully installed on your machine, if you see the following:
+			$ mvn --version
+			Apache Maven 3.1.1 (0728685237757ffbf44136acec0402957f723d9a; 2013-09-17 10:22:22-0500)
+			Maven home: /Users/shamsimam/dev/apache-maven-3.1.1
+			Java version: 1.8.0_25, vendor: Oracle Corporation
+			...
+		</step>
+	</instruction>
+	<!-- Not sure how to store the instructions from the wiki...
+		 There are pictures. -->
+	<category name="HJ-Lib Setup">
+		<instruction name="Cooperative Runtime"></instruction>
+		<instruction name="Blocking Runtime"></instruction>
+	</category>
+</tab>
