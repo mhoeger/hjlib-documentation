@@ -4,6 +4,9 @@
 
 <!-- Quotation marks also not allowed in attributes but I don't think that should be a problem. -->
 
+<!-- There's a really good XML Validator that checks for correct syntax:
+     http://www.w3schools.com/xml/xml_validator.asp -->
+
 <!-- Example for constructs-style tab -->
 <tab name="HJ-Lib Constructs">
     <category name="Actors">

@@ -120,6 +120,7 @@
 			<description>Causes an arbitrary thread from the wait set to be moved into the entry set. The selected thread is then set to Runnable. As a result, this thread can compete for the object lock again.</description>
 			<javadoc name="notify()">https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#notify()</javadoc>
 			<usedwith>synchronized</usedwith>
+		</construct>
 		<construct name="Notify All" java="notifyAll()">
 			<description>Moves all threads from the wait set into the entry set, allowing each thread to have equal likelihood of being the next one to acquire the object lock.</description>
 			<javadoc name="notifyAll()">https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#notifyAll()</javadoc>
