@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tab name="Performance &amp; Correctness Tools">
+	<category name="Performance">
+		<construct name="Abstract Metrics" java="abstractMetrics()">
+			<description>Returns abstract metrics report for the currently executing task.</description>
+			<javadoc name="abstractMetrics">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#abstractMetrics--</javadoc>
+		</construct>
+		<construct name="Current Time in Milliseconds" java="System.currenttimemillis()">
+			<description>Returns the current time in milliseconds. Can be used to record the time at the start of a program execution and at the end of a program execution, aiding in measurement of real time performance of a program.</description>
+			<javadoc name="System.curenttimemillis()">http://docs.oracle.com/javase/8/docs/api/java/lang/System.html#currentTimeMillis--</javadoc>
+		</construct>
+		<construct name="Do Work" java="doWork(long n)">
+			<description>Used to report abstract work done by the currently executing task.</description>
+			<javadoc name="doWork">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#doWork-long-</javadoc>
+		</construct>
+		<construct name="HjMetrics">
+			<description>Used to report metrics results.</description>
+			<javadoc name="HjMetrics">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjMetrics.html</javadoc>
+			<method name="criticalPathLength()">Returns the critical path length, which is the length of the longest path in a parallel program’s computation graph.</method>
+			<method name="totalWork()">Returns the total work performed in a parallel program.</method>
+			<method name="idealParallelism()">Returns the ideal parallelism, which is total work divided by critical path length.</method>
+		</construct>
+		<instruction name="HJ-Viz">
+			<description>HJ-Viz generates interactive Computation Graphs (CGs) of parallel programs by analyzing event logs. It also incorporates Abstract Execution Metrics (AEM) into the visualization. HJ-Viz highlights the program’s critical paths and displays the amount of work performed in each step of computation based on the collected AEM.</description>
+			<step>Download Graphviz at http://www.graphviz.org/Download.php.</step>
+			<step>Generate the program’s event log file</step>
+			<step>Example code for generating an event log file is in the lab_4_hjviz folder.</step>
+			<step>Your program should use doWork(long n) to keep track of how much work it is doing.</step>
+			<step>Run the program to generate the event log file.</step>
+			<step>The pom file should include a profile with the ID “server”, such as this:
+				<code>
+					&lt;profile&gt;
+			            &lt;id&gt;server&lt;/id&gt;
+			            &lt;build&gt;
+			                &lt;plugins&gt;
+			                    &lt;plugin&gt;
+			                        &lt;!-- executes the main program --&gt;
+			                        &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+			                        &lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt;
+			                        &lt;executions&gt;
+			                            &lt;execution&gt;
+			                                &lt;goals&gt;
+			                                    &lt;goal&gt;exec&lt;/goal&gt;
+			                                &lt;/goals&gt;
+			                            &lt;/execution&gt;
+			                        &lt;/executions&gt;
+			                        &lt;configuration&gt;
+			                            &lt;executable&gt;java&lt;/executable&gt;
+			                            &lt;arguments&gt;
+			                                &lt;argument&gt;-jar&lt;/argument&gt;
+			                                &lt;argument&gt;${habanero-java-lib:hjviz:jar}&lt;/argument&gt;
+			                            &lt;/arguments&gt;
+			                        &lt;/configuration&gt;
+			                    &lt;/plugin&gt;
+			                &lt;/plugins&gt;
+			            &lt;/build&gt;
+			        &lt;/profile&gt;
+			    </code>
+			</step>
+			<step>Additionally, make sure that HJ-Viz is included as one of the dependencies in the pom file:
+				<code>&lt;dependency&gt;
+			            &lt;groupId&gt;habanero-java-lib&lt;/groupId&gt;
+			            &lt;artifactId&gt;habanero-java-lib-hjviz&lt;/artifactId&gt;
+			            &lt;version&gt;${hjlib.version}&lt;/version&gt;
+			        &lt;/dependency&gt;
+		    	</code>
+			</step>
+			<step>Run the HJ-Viz server locally by running the following command: mvn clean compile exec:exec -Pserver.</step>
+			<step>If you get the following message, HJ-Viz has successfully started on your machine:
+				<code>* Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)</code>
+			</step>
+			<step>Go to the URL http://127.0.0.1:8000/ on a browser.</step>
+			<step>Upload the event log file and click “Submit”.</step>
+			<step>The computation graph for that program should be displayed in the browser.</step>
+		</instruction>
+	</category>
+	<category name="Correctness">
+		<instruction name="Data Race Detection Using FastTrack">
+			<description>A tool for detecting data races. It is important to note that if FastTrack does not detect any data races, this does not guarantee that your program is free of data races.</description>
+		</instruction>
+		<construct name="Deadlock Detection" java="HjSystemProperty.enableDebuggingFlags()">
+			<description>An HJ-Lib tool for detecting deadlocks.</description>
+			<javadoc name="enableDebuggingFlags">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/runtime/config/HjSystemProperty.html#enableDebuggingFlags--</javadoc>
+		</construct>
+	</category>
+</tab>
