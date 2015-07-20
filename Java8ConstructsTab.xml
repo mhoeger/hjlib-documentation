@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tab>Standard Java 8 Constructs
+<tab name="Standard Java 8 Constructs">
 	<category name="Atomic Variables">
 		<description>Description</description>
-		<construct name="Atomic Integer" java="AtomicInteger">
+		<construct name="AtomicInteger">
 			<description>An int value that can be safely updated in a parallel program. While there are atomic classes representing integer and long data types, there are no atomic classes representing float and double data types. If needed, Float.floatToIntBits(float) and Float.intBitsToFloat(int) conversions, as well as Double.doubleToLongBits(double) and Double.longBitsToDouble(long) conversions, can be used to store float and double values atomically in an AtomicInteger or AtomicLong.</description>
 			<javadoc name="AtomicInteger">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicInteger.html</javadoc>
 			<method name="get()">Returns the current value.</method>
@@ -16,7 +16,7 @@
 			<method name="decrementAndGet()">Atomically decrements the current value by one and returns the post-decrement value.</method>
 			<method name="incrementAndGet()">Atomically increments the current value by one and returns the post-increment value.</method>
 		</construct>
-		<construct name="Atomic Long" java="AtomicLong">
+		<construct name="AtomicLong">
 			<description>A long value that can be safely updated in a parallel program. While there are atomic classes representing integer and long data types, there are no atomic classes representing float and double data types. If needed, Float.floatToIntBits(float) and Float.intBitsToFloat(int) conversions, as well as Double.doubleToLongBits(double) and Double.longBitsToDouble(long) conversions, can be used to store float and double values atomically in an AtomicInteger or AtomicLong.</description>
 			<javadoc name="AtomicLong">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicLong.html</javadoc>
 			<method name="get()">Returns the current value.</method>
