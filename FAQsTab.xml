@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tab name="FAQs">
+	<category name="Getting Started With HJ-Lib">
+		<question>What is the Nb at the end of futureNb, asyncNb, etc. mean? Should we prefer one version over the other?</question>
+		<question>What is the difference between data race freedom and determinism?</question>
+		<answer>While both of these properties are desirable in many circumstances (and often times go hand-in-hand), they are not synonymous. For example, a concurrent queue would ensure that concurrent operations execute safely and without interference, but do not place any constraints on the order of execution, therefore causing nondeterminism while also demonstrating data race freedom.</answer>
+		<question>What is the difference between isolated and synchronized?</question>
+		<answer>In many ways, their use is very similar. One big difference is the deadlock freedom afforded by multi-object isolated statements. With synchronized, it is possible to enter a deadlock state, as shown in the following example:
+			<code>
+				Thread 0: 
+				synchronized (obj1) {
+				  synchronized (obj2) {
+				  }
+				}
+				Thread 1:
+				synchronized (obj2) {
+				  synchronized (obj1) {
+				  }
+				}
+			</code>
+			For an explanation on why the above code can potentially lead to a deadlock, please refer to the FAQ: Why does locking locks in a different order cause a potential deadlock?
+		</answer>
+		<question>Why does locking locks in a different order cause a potential deadlock?</question>
+		<answer>
+			Let's consider two threads: T0 and T1. Let's also say they both can lock or unlock two locks: La and Lb. Suppose that T0's run() method is simply:
+			<code>
+				La.lock();
+				Lb.lock();
+				Lb.unlock();
+				La.unlock();
+			</code>
+			and T1's run() method is:
+			<code>
+				Lb.lock();
+				La.lock();
+				La.unlock();
+				Lb.unlock();
+			</code>
+			It's possible that we get into a state where T0 has executed only its first operation and now holds the La lock, and that T1 has also only executed its first operation now holds the Lb lock. What happens next? Well, T0 will run its second operation (Lb.lock()) and T1 will run its second operation (La.lock()). Calling lock() on a lock that is already locked by another thread causes the caller to block until the thread currently holding that lock calls unlock(). That means that T0 is going to block until Lb is unlocked, and T1 is going to block until La is unlocked. The problem is T0 is the thread holding La and T1 is the thread holding Lb. This means that there's a circular dependency here, where each thread depends on (and is blocked until) the other thread making forward progress before it can. Hence we have a deadlock.
+			A similar situation can be observed with the use of object monitors in synchronized.
+		</answer>
+		<question>Why does my program hang when offering/checking a solution to a eureka?</question>
+		<answer>If your calls to the offer and/or check are made inside an async, this may be solved by registering the finish scope on the eureka.</answer>
+		<question>When is it safe to combine HJ and Java constructs?</question>
+
+	</category>
+	<category name="Improving Performance">
+		<question>How can I increase the number of worker threads that HJ-lib uses?</question>
+		<answer>The current implementation for HJ-lib uses thread blocking operations for blocking constructs such as end of finish, future get, and phaser wait operation. These can result in the worker threads getting blocked. The runtime compensates by allocating more worker thread, but eventually when a configured maximum number of blocked threads is reached the runtime gives up by throwing an exception. To avoid this scenario, users can either configure the maximum number of worker thread to a larger value or avoid using blocking operations in their solutions.
+			HJ-lib can be configured to use more worker threads by setting the following property before calling initializeHabanero(): System.setProperty(HjSystemProperty.maxThreads.propertyKey(), "100");
+		</answer>
+	</category>
+</tab>
