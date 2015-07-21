@@ -23,7 +23,7 @@
     <method name="Allreduce(Object sendbuf, int sendoffset, Object recvbuf, int recvoffset, int count, Datatype datatype, Op op)">Similar to Reduce(...), but the result appears in the receive buffer (“recvbuf”) of all processes in the group.</method>
     <method name="Scan(Object sendbuf, int sendoffset, java.lang.Object recvbuf, int recvoffset, int count, Datatype datatype, Op op)">Perform a prefix reduction on data distributed across the group.</method>
     <method name="Alltoall(Object sendbuf, int sendoffset, int sendcount, Datatype sendtype, Object recvbuf, int recvoffset, int recvcount, Datatype recvtype)">Extension of Allgather(...) to the case where each process sends distinct data to each of the receivers.</method>
-    <datatypes>
+    <list name="Data Types">
         <item>MPI.BYTE</item>
         <item>MPI.CHAR</item>
         <item>MPI.SHORT</item>
@@ -33,7 +33,7 @@
         <item>MPI.FLOAT</item>
         <item>MPI.DOUBLE</item>
         <item>MPI.OBJECT</item>
-    </datatypes>
+    </list>
     <op name="MPI_MAX">Maximum for data types int, long, float, and double.</op>
     <op name="MPI_MIN">Minimum for data types int, long, float, and double.</op>
     <op name="MPI_SUM">Sum for data types int, long, float, and double.</op>

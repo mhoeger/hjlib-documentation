@@ -9,15 +9,19 @@
 		</step>
 		<step>If the Java version shows 1.8.*, you already have Java 8 installed on your machine. If you do have Java 8 already installed on your machine, please skip to Maven setup.</step>
 		<step>If you do not already have it installed, you will need a Java 8 installation on your machine and have your JAVA HOME and PATH point to the new installation. Java 8 can be downloaded and installed from the Oracle website.
-			<note>For Macs: To set up environment variables on your machine, a .bash_profile needs to be created and edited; please refer to this website for instructions. Here is an example of what should be on your machine’s .bash_profile:
-				JAVA8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home
-				export JAVA_HOME=${JAVA8_HOME}
-				export PATH=$JAVA_HOME/bin:$PATH
+			<quote>
+				For Macs: To set up environment variables on your machine, a .bash_profile needs to be created and edited; please refer to this website for instructions. Here is an example of what should be on your machine’s .bash_profile:
+				<code>
+					JAVA8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home
+					export JAVA_HOME=${JAVA8_HOME}
+					export PATH=$JAVA_HOME/bin:$PATH
+				</code>
 				<link url="http://www.google.com/url?q=http%3A%2F%2Fhathaway.cc%2Fpost%2F69201163472%2Fhow-to-edit-your-path-environment-variables-on-mac&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHbLR1sjYCFd-d7leAp4Sq526997A">this website</link>
-			</note>
-			<note>For Windows: To set up environment variables on your machine, please refer to this website.
+			</quote>
+			<quote>
+				For Windows: To set up environment variables on your machine, please refer to this website.
 				<link url="http://www.google.com/url?q=http%3A%2F%2Fwww.computerhope.com%2Fissues%2Fch000549.htm&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNEgjd6yBvzOSImlIE9icZz6SwVLRQ">this website</link>
-			</note>
+			</quote>
 			<link url="https://www.google.com/url?q=https%3A%2F%2Fjdk8.java.net%2Fdownload.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFlsqVvnoz-qITcoDkNupatvNqr6Q">Oracle website</link>
 		</step>
 	</instruction>
@@ -75,15 +79,15 @@
 				Since we are running HelloWorld.java without configuring the javaagent option, it is likely to intermittently fail with an error as follows:
 				<img>pics/cooperative-runtime/12</img>
 				Or the following error:
-				<note>
+				<code>
 					Error occurred during initialization of VM
 					agent library failed to init: instrument
-				</note>
+				</code>
 				To fix this error, we need to correct the setup of the javagent JVM option before attempting to run HelloWorld.java.
 				Java agents provide services that allow Java programming language agents to instrument programs running on the JVM. To run HJlib programs under the cooperative runtime we need to configure the JVM to use agents available in the HJlib jar. An agent is started by adding this option to the command-line:
-				<note>
+				<code>
 					-javaagent:jarpath[=options]
-				</note>
+				</code>
 				We need to configure this in IntelliJ to be able to successfully run HJlib programs. Below is an image of what the configuration looks like after editing the run configuration:
 				<img>pics/cooperative-runtime/13</img>
 				<img>pics/cooperative-runtime/14</img>

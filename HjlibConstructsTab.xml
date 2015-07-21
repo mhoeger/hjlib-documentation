@@ -210,7 +210,7 @@
 		</construct>
 		<construct name="Data Driven Future Object" java="HjDataDrivenFuture">
 			<description>An object that acts as a container to synchronizes tasks. In this synchronization, one task waits for a data value to become available while the other generates the value. Data driven futures (DDFs) provide a way to express data-dependences among dynamic tasks. 
-				Note: It is illegal to perform a get() operation on an empty DDF. Therefore, get() should only be called on a DDF within an asyncAwait clause, which will wait for all registered DDFs to be full before executing. 
+				NOTE: It is illegal to perform a get() operation on an empty DDF. Therefore, get() should only be called on a DDF within an asyncAwait clause, which will wait for all registered DDFs to be full before executing. 
 			</description>
 			<javadoc name="HjDataDrivenFuture">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjDataDrivenFuture.html</javadoc>
 			<method name="put(T value)">Associates the specified value with the data driven future.</method>
