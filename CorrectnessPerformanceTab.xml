@@ -76,7 +76,23 @@
 	</category>
 	<category name="Correctness">
 		<instruction name="Data Race Detection Using FastTrack">
-			<description>A tool for detecting data races. It is important to note that if FastTrack does not detect any data races, this does not guarantee that your program is free of data races.</description>
+			<description>FastTrack is a tool for detecting data races. It runs an instrumented version of your HJlib program and reasons about all potential interfering accesses that are candidates for data races according to the parallelism in the input program. If a race is found, a pair of interfering accesses is printed with source code locations for the accesses.  It is important to note that if FastTrack does not detect any data races, this does NOT guarantee that your program is free of data races.
+				Note that FastTrack only works with the blocking runtime version of HJ-Lib.
+			</description>
+			<step>Run the Maven profile with FastTrack enabled.</step>
+			<step>Once it completes execution, there should be extra output with information on data races. The following is an example of a detected data race:
+				<code>## FastTrack Error
+					## 
+					##          Thread: 6    
+					##           Blame: rd_array@edu/rice/comp322/UsefulParScoring.java:86:85
+					##           Count: 1    (max: 20)
+					##     Guard State: [W=(8:35) R=(--:--) CV=[(0:0) (1:0) (2:0) (3:0) (4:0) (5:0) (6:AB) (7:0) (8:35)]]
+					##  Current Thread: [tid=6    cv=[(0:473) (1:6042) (2:C8) (3:A1) (4:90) (5:79) (6:AB) (7:67) (8:34)]   epoch=(6:AB)]
+					##           Array: @03[77]
+					## Previous Access: wr_array@edu/rice/comp322/UsefulParScoring.java:87:119 by Thread 8 (name = Thread[pool-0-thread-008,5,main])
+					##  Current Access: rd_array@edu/rice/comp322/UsefulParScoring.java:86:85 by Thread 6 (name = pool-0-thread-006)
+				</code>
+			</step>
 		</instruction>
 		<construct name="Deadlock Detection" java="HjSystemProperty.enableDebuggingFlags()">
 			<description>An HJ-Lib tool for detecting deadlocks.</description>
