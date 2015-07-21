@@ -41,7 +41,7 @@
 	</category>
 	<category name="Concurrent Collections">
 		<construct name="Concurrent Hash Map" java="ConcurrentHashMap&lt;K,V&gt;">
-			<description>A thread-safe version of &lt;a href=”https://docs.oracle.com/javase/8/docs/api/java/util/Hashtable.html”&gt;Hashtable&lt;/a&gt;.</description>
+			<description>A thread-safe version of a Hashtable.</description>
 			<javadoc name="ConcurrentHashMap">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html</javadoc>
 			<method name="get(Object key)">Returns the value to which “key” is mapped, or null if there is no mapping for “key”.</method>
 			<method name="put(K key, V value)">Maps “key” to “value”.</method>

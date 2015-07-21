@@ -183,7 +183,9 @@
 			<description>Creates a finish accumulator (HjFinishAccumulator), an object that does operations on values from multiple asynchronous tasks in a data-race free way. The operation (HjOperator) is specified on construction.</description>
 			<javadoc name="newFinishAccumulator">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#newFinishAccumulator-edu.rice.hj.api.HjOperator-java.lang.Class-</javadoc>
 			<usedwith>HjFinishAccumulator</usedwith>
-			<usedwith>&lt;a href="http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjOperator.html"&gt;HjOperator&lt;/a&gt;</usedwith>
+			<usedwith>HjOperator
+				<link url="http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjOperator.html">HjOperator</link>
+			</usedwith>
 		</construct>
 		<construct name="Finish Accumulator" java="finish (accum_1, ...)">
 			<description>A finish with accumulators registered within its scope. NOTE: Non-owner tasks cannot register accumulators within a finish.
@@ -228,7 +230,9 @@
 			<javadoc name="HjPlace">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/api/HjPlace.html</javadoc>
 			<javadoc name="place">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#place-int-</javadoc>
 			<javadoc name="here">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#here--</javadoc>
-			<usedwith>&lt;a href="http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#asyncNbAt-edu.rice.hj.api.HjPlace-edu.rice.hj.api.HjRunnable-"&gt;asyncNbAt&lt;/a&gt;</usedwith>
+			<usedwith>asyncNbAt
+				<link url="http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module0.html#asyncNbAt-edu.rice.hj.api.HjPlace-edu.rice.hj.api.HjRunnable-">asyncNbAt</link>
+			</usedwith>
 		</construct>
 		<construct name="Iteration Regions" java="HjRegion">
 			<description>An object that represents a k-dimensional space of points. HjRegions are used to specify loop bounds, and are created with the factory methods newRectangularRegion1D, newRectangularRegion2D, and newRectangularRegion3D.</description>

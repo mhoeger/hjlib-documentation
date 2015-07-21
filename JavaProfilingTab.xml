@@ -11,7 +11,7 @@
 	<instruction name="Running an HJ-Lib program with VisualVM">
 		<step>Go to Applications > Profile Startup.</step>
 		<step>Click continue.</step>
-		<step>In the “Start profiling from classes:” box, define the class you want to profile. VisualVM will only profile methods in this class and any inner classes. If left empty, it will profile all methods that are executed. Click continue.</step>
+		<step>In the “Start profiling from classes:” box, define the class you want to profile. VisualVM will only profile methods in this class and any inner classes. Do NOT leave this text box empty. The profiler output may be useless if you do not define the main class of your application. Click continue.</step>
 		<step>Copy the agentpath argument and click Profile.
 			<note>If a Warning window pops up with the message “Profiled application started too soon”, you ran the program before the profiler. Terminate the program and then click OK. If you are getting this warning but have not started a program, go to your Home directory and type “cd .nbprofiler” into the command line. List this directory’s contents. There should be a file named after the port that is used in the application configuration specifications of Profile Startup. Delete this file and click Profile again.</note>
 		</step>
