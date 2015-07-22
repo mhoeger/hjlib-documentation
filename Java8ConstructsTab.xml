@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tab name="Standard Java 8 Constructs">
+<tab name="Java 8">
 	<category name="Atomic Variables">
 		<description>Description</description>
 		<construct name="AtomicInteger">
@@ -30,7 +30,7 @@
 			<method name="decrementAndGet()">Atomically decrements the current value by one and returns the post-decrement value.</method>
 			<method name="incrementAndGet()">Atomically increments the current value by one and returns the post-increment value.</method>
 		</construct>
-		<construct name="Atomic Reference" java="AtomicReference&lt;V&gt;>">
+		<construct name="Atomic Reference" java="AtomicReference&lt;V&gt;">
 			<description>An object reference that can be safely updated in a parallel program.</description>
 			<javadoc name="AtomicReference">https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicReference.html</javadoc>
 			<method name="get()">Returns the current value.</method>

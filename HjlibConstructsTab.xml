@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tab name="Hj-Lib Constructs">
+<tab name="Hj-Lib">
 	<category name="Actor">
-		<description>Description</description>
 		<construct name="Actor" java="Actor&lt;Message_Type&gt;">
 			<description>A concurrent, message-processing component of a parallel message-passing system. An actor can process messages, send messages, change local state, and create new actors.</description>
 			<javadoc name="Actor">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/runtime/actors/Actor.html</javadoc>
@@ -20,8 +19,7 @@
 		</construct>
 	</category>
 	<category name="Async/Finish">
-		<description>Description</description>
-		<construct name="Async">async
+		<construct name="Async" java="async">
 			<description>Starts a new child task that executes in parallel. The task is only guaranteed to complete by the end of the surrounding finish (if a finish is present).</description>
 			<javadoc name="Async">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/Module1.html#async-edu.rice.hj.api.HjSuspendable-</javadoc>
 			<usedwith>finish</usedwith>

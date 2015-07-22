@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relatedconstructs>
+	<pair>
+		<thing>Actor &lt;Message_Type&gt;</thing>
+		<thing>Selector &lt;Message_Type&gt;</thing>
+		<note>A selector has multiple mailboxes, while an actor only has one.</note>
+	</pair>
+	<pair>
+		<thing>asyncPhased</thing>
+		<thing>async</thing>
+		<note>In asyncPhased, the asynchronous task may be registered to a specific subset of its parent's phasers with specified modes. In async, no phasers are used.</note>
+	</pair>
+	<pair>
+		<thing>async</thing>
+		<thing>asyncAwait</thing>
+		<note>In asyncAwait, the task is delayed to start after specified events (data-driven futures) have occurred. In async, the task could begin immediately.</note>
+	</pair>
+	<pair>
+		<thing>async</thing>
+		<thing>Thread</thing>
+		<note>Invoking start() on a thread is similar to spawning an async. However, creating a new thread incurs more overhead than creating a new asynchronous task.</note>
+	</pair>
+	<pair>
+		<thing>asyncPhased</thing>
+		<thing>asyncAwait</thing>
+		<note>asyncPhased is used with phasers for barrier synchronization, while asyncAwait is used with data driven futures for data-driven tasks.</note>
+	</pair>
+	<pair>
+		<thing>finish</thing>
+		<thing>ForkJoinTask</thing>
+		<note>ForkJoinTask is similar to a finish block enclosing a collection of asyncs.</note>
+	</pair>
+	<pair>
+		<thing>finish</thing>
+		<thing>finish(accum_1, ...)</thing>
+		<note>A finish (accum_1, …) has finish accumulators registered to its scope, while a finish does not. If a finish contains finish accumulators within its scope, they should be registered.</note>
+	</pair>
+	<pair>
+		<thing>finish</thing>
+		<thing>finish(eureka)</thing>
+		<note>A finish (eureka) has a eureka objet registered to its scope, while a finish does not. If a finish contains a eureka within its scope, it should be registered.</note>
+	</pair>
+	<pair>
+		<thing>HjEureka</thing>
+		<thing>HjFinishAccumulator</thing>
+		<note>A eureka should be used if further execution of tasks becomes unnecessary after a certain point (in a search, for example). An accumulator should be used if all spawned tasks must execute for the correct answer (in getting a sum, for example).</note>
+	</pair>
+	<pair>
+		<thing>forall</thing>
+		<thing>forallChunked</thing>
+		<note>forallChunked is semantically the same as forall. However, forallChunked increases actual speedup by grouping/chunking. (NOTE: For fast performance, it is best to start with forallChunked. From there, chunk size can be manually tweaked to be more fine-grained).</note>
+	</pair>
+	<pair>
+		<thing>forall</thing>
+		<thing>forasync</thing>
+		<note>forall has an implicit finish, while forasync does not.</note>
+	</pair>
+	<pair>
+		<thing>forall</thing>
+		<thing>forallPhased</thing>
+		<note>forallPhased allows for barriers and further synchronization by using next and signal, while forall does not.</note>
+	</pair>
+	<pair>
+		<thing>forasync</thing>
+		<thing>forasyncChunked</thing>
+		<note>forasyncChunked is semantically the same as forasync. However, forasyncChunked increases actual speedup by grouping/chunking.</note>
+	</pair>
+	<pair>
+		<thing>forasync</thing>
+		<thing>async</thing>
+		<note>forasync is the same as a standard for loop that spawns new asynchronous tasks every iteration.</note>
+	</pair>
+	<pair>
+		<thing>forasyncChunked</thing>
+		<thing>forallChunked</thing>
+		<note>forallChunked has an implicit finish, while forasyncChunked does not.</note>
+	</pair>
+	<pair>
+		<thing>forallPhased</thing>
+		<thing>forasyncPhased</thing>
+		<note>forallPhased has an implicit finish while forasyncPhased does not. forasyncPhased can also declare phasers explicitly.</note>
+	</pair>
+	<pair>
+		<thing>forallPhased</thing>
+		<thing>CountDownLatch</thing>
+		<note>forallPhsed allows for barrier synchronization across all worker threads, while CountDownLatch allows for barrier synchronization across a given number of threads.</note>
+	</pair>
+	<pair>
+		<thing>next</thing>
+		<thing>signal</thing>
+		<note>Next creates barriers, while signal can be used (with a barrier) to do concurrent work while at a barrier, before the next phase.</note>
+	</pair>
+	<pair>
+		<thing>forseq</thing>
+		<thing>for</thing>
+		<note>forseq and for function the same way, with only syntactic difference.</note>
+	</pair>
+	<pair>
+		<thing>HjFinishAccumulator</thing>
+		<thing>isolated</thing>
+		<note>Isolated is used to synchronize blocks of code (that could include updating a shared variable), while a finish accumulator is only allows for synchronized updating of the finish accumulator object.</note>
+	</pair>
+	<pair>
+		<thing>HjFinishAccumulator</thing>
+		<thing>AtomicInteger</thing>
+		<note>An AtomicInteger can only add to the previously set value or replace it. An accumulator offers more flexibility in the operations it can perform as it updates its value.</note>
+	</pair>
+	<pair>
+		<thing>future</thing>
+		<thing>finish</thing>
+		<note>Unlike finish, which waits for all async tasks in the finish scope, a future.get() only waits for the specified async expression.</note>
+	</pair>
+	<pair>
+		<thing>future</thing>
+		<thing>HjDataDrivenFuture</thing>
+		<note>Futures and data driven futures both store a value and block on their get() methods until that value becomes available. They differ in where this value comes from. A future contains an asynchronous task that returns this value. Therefore, when a future is created, it can immediately begin executing code to generate the return value. A data driven future is given a value to store and return by the put() method.This allows for more flexibility in synchronization, but also has the potential to deadlock.</note>
+	</pair>
+	<pair>
+		<thing>isolated</thing>
+		<thing>isolatedWithReturn</thing>
+		<note>isolatedWIthReturn has a return value while isolated does not. They are the same otherwise.</note>
+	</pair>
+	<pair>
+		<thing>isolated</thing>
+		<thing>synchronized</thing>
+		<note>Object-based isolation guarantees deadlock freedom, while synchronized statements do not.</note>
+	</pair>
+	<pair>
+		<thing>AtomicInteger</thing>
+		<thing>volatile</thing>
+		<note>Atomic variables guarantee atomic compare-and-set, while volatile variables do not.</note>
+	</pair>
+	<pair>
+		<thing>AtomicLong</thing>
+		<thing>volatile</thing>
+		<note>Atomic variables guarantee atomic compare-and-set, while volatile variables do not.</note>
+	</pair>
+	<pair>
+		<thing>AtomicReference&lt;V&gt;</thing>
+		<thing>volatile</thing>
+		<note>Atomic variables guarantee atomic compare-and-set, while volatile variables do not.</note>
+	</pair>
+	<pair>
+		<thing>AtomicLong</thing>
+		<thing>AtomicInteger</thing>
+		<note>These are atomic classes for different data types.</note>
+	</pair>
+	<pair>
+		<thing>AtomicReference&lt;V&gt;</thing>
+		<thing>AtomicInteger</thing>
+		<note>These are atomic classes for different data types.</note>
+	</pair>
+	<pair>
+		<thing>AtomicLong</thing>
+		<thing>AtomicReference&lt;V&gt;</thing>
+		<note>These are atomic classes for different data types.</note>
+	</pair>
+	<pair>
+		<thing>ConcurrentHashMap&lt;K,V&gt;</thing>
+		<thing>ConcurrentLinkedQueue&lt;E&gt;</thing>
+		<note>ConcurrentLinkedQueue is a Concurrent Collections that sorts its elements in a first-in-first-out ordering, while ConcurrentHashMap does not have any specific ordering.</note>
+	</pair>
+	<pair>
+		<thing>ForkJoinPool</thing>
+		<thing>Thread</thing>
+		<note>ForkJoinPool contains a pool of Threads.</note>
+	</pair>
+	<pair>
+		<thing>ForkJoinTask</thing>
+		<thing>RecursiveAction</thing>
+		<note>RecursiveAction extends ForkJoinTask.</note>
+	</pair>
+	<pair>
+		<thing>ForkJoinTask</thing>
+		<thing>RecursiveTask</thing>
+		<note>RecursiveTask extends ForkJoinTask.</note>
+	</pair>
+	<pair>
+		<thing>RecursiveTask</thing>
+		<thing>RecursiveAction</thing>
+		<note>RecursiveTask returns a value, while RecursiveAction does not.</note>
+	</pair>
+	<pair>
+		<thing>ThreadPoolExecutor</thing>
+		<thing>ForkJoinPool</thing>
+		<note>ForkJoinPool is similar to a ThreadPoolExecutor, but is meant to be used with a ForkJoinTask.</note>
+	</pair>
+	<pair>
+		<thing>wait()</thing>
+		<thing>notify()</thing>
+		<note>notify can select a thread from the wait set and move it to the entry set, while wait does the opposite.</note>
+	</pair>
+	<pair>
+		<thing>wait()</thing>
+		<thing>notifyAll()</thing>
+		<note>notifyAll can select a thread from the wait set and move it to the entry set, while wait does the opposite.</note>
+	</pair>
+	<pair>
+		<thing>notify()</thing>
+		<thing>notifyAll()</thing>
+		<note>notifyAll() functions similar to notify(), but to all threads in the wait set.</note>
+	</pair>
+	<pair>
+		<thing>ReentrantLock</thing>
+		<thing>synchronized</thing>
+		<note>ReentrantLock and synchronized methods and statements have the same basic behavior and semantics. However, ReentrantLock allows threads to acquire a variable number of locks at once.</note>
+	</pair>
+	<pair>
+		<thing>ReentrantLock</thing>
+		<thing>ReadWriteLock</thing>
+		<note>ReentrantLock only provides one lock for both reads and write, while ReadWriteLock provides one read lock and one write lock, allowing opportunities for more parallelism.</note>
+	</pair>
+	<pair>
+		<thing>ReentrantReadWriteLock</thing>
+		<thing>ReadWriteLock</thing>
+		<note>ReentrantReadWriteLock is an implementation of ReadWriteLock that supports reentrancy.</note>
+	</pair>
+	<pair>
+		<thing>ReentrantLock</thing>
+		<thing>ReentrantReadWriteLock</thing>
+		<note>ReentrantLock only provides one lock for both reads and write, while ReentrantReadWriteLock provides one read lock and one write lock, allowing opportunities for more parallelism.</note>
+	</pair>
+	<pair>
+		<thing>Semaphore</thing>
+		<thing>Locks</thing>
+		<note>A lock only allows one process to access the resource at one point in time, while a semaphore allows a given number of processes to access the resource simultaneously.</note>
+	</pair>
+	<pair>
+		<thing></thing>
+		<thing></thing>
+		<note></note>
+	</pair>
+	<pair>
+		<thing></thing>
+		<thing></thing>
+		<note></note>
+	</pair>
+	<pair>
+		<thing></thing>
+		<thing></thing>
+		<note></note>
+	</pair>
+	<pair>
+		<thing></thing>
+		<thing></thing>
+		<note></note>
+	</pair>
+	<pair>
+		<thing></thing>
+		<thing></thing>
+		<note></note>
+	</pair>
+</relatedconstructs>
