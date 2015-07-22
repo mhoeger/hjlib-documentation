@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tab name="Installation Guide">
+<tab name="Installation Guide" dropdown="Setup">
 	<instruction name="Java 8 Setup">
 		<step>You may already have Java 8 installed on your computer. To check whether you have Java 8 installed on your machine, go to the command line and type the following java -version. If you see something as follows:
 			$ java -version

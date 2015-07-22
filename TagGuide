@@ -1,7 +1,8 @@
 
 Tags				|	Attributes										|	Text Element
 ---------------------------------------------------------------------------------------------------------------------------------
-tab					|	name											|	n/a
+tab					|	name, dropdown (name of dropdown, only if this	|	n/a
+					|	tab is supposed to be under a dropdown menu)	|
 category			|	name											|	n/a
 construct			|	name (the conceptual name for the construct), 	|	n/a
 					|	java (the java name for the construct)			|

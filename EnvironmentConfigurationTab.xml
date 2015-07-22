@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tab name="Environment &amp; Configuration">
+<tab name="Environment &amp; Configuration" dropdown="Setup">
 	<category name="Cooperative vs. Blocking Runtimes">
 		<description>HJlib is a pure Java 8 library implementation of various parallel constructs. It relies on the use of Java 8 lambdas to simplify writing parallel programs. This library is responsible for scheduling and synchronizing an unbounded number of async tasks on a fixed number of processors (“worker threads”). Two scheduling runtime systems in HJlib are:</description>
 		<construct name="Cooperative Runtime">

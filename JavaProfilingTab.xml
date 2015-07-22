@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tab name="Java Profiling">
+<tab name="Java Profiling" dropdown="Tools">
 	<instruction name="VisualVM Installation">
 		<step>Go to https://visualvm.java.net/download.html and follow the instructions there to download the software.</step>
 		<step>Go to Tools > Plugins > Available Plugins.</step>

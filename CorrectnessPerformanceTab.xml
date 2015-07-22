@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tab name="Performance &amp; Correctness Tools">
+<tab name="Performance &amp; Correctness Tools" dropdown="Tools">
 	<category name="Performance">
 		<construct name="Abstract Metrics" java="abstractMetrics()">
 			<description>Returns abstract metrics report for the currently executing task.</description>
