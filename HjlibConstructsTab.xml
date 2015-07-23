@@ -5,12 +5,12 @@
 			<description>A concurrent, message-processing component of a parallel message-passing system. An actor can process messages, send messages, change local state, and create new actors.</description>
 			<javadoc name="Actor">http://www.cs.rice.edu/~vs3/hjlib/doc/edu/rice/hj/runtime/actors/Actor.html</javadoc>
 			<usedwith>finish</usedwith>
-			<method ="start()">Allows the actor to process messages.</method>
-			<method ="process(T message)">This method must be implemented by the user and specifies an actor’s “behavior” when processing messages. Messages are processed one at a time.</method>
-			<method ="send(T message)">Sends a message to the actor (can be performed by actor or non-actor). For example, anActor.send(aMessage) sends aMessage to anActor. The order of messages is preserved between the same sender and receiver.</method>
-			<method ="pause()">Changes the state of the actor so that it will no longer process messages until resume() is called. However, sent messages will still accumulate to be processed later. This is a non-blocking operation. Using pause and resume around asynchronous tasks spawned in the process method produces the same result as using a finish construct. Pause and resume should be used instead of a finish for better performance. (TODO: only better performance for work-sharing run-time? cooperative too?)</method>
-			<method ="resume()">Changes the state of the actor so that it will continue to process messages. See pause() for notes on performance.</method>
-			<method ="exit()">Signals intention for the actor to terminate. Actors should be terminated by calling exit in the process method if some stop condition is sent to the actor.</method>
+			<method name="start()">Allows the actor to process messages.</method>
+			<method name="process(T message)">This method must be implemented by the user and specifies an actor’s “behavior” when processing messages. Messages are processed one at a time.</method>
+			<method name="send(T message)">Sends a message to the actor (can be performed by actor or non-actor). For example, anActor.send(aMessage) sends aMessage to anActor. The order of messages is preserved between the same sender and receiver.</method>
+			<method name="pause()">Changes the state of the actor so that it will no longer process messages until resume() is called. However, sent messages will still accumulate to be processed later. This is a non-blocking operation. Using pause and resume around asynchronous tasks spawned in the process method produces the same result as using a finish construct. Pause and resume should be used instead of a finish for better performance. (TODO: only better performance for work-sharing run-time? cooperative too?)</method>
+			<method name="resume()">Changes the state of the actor so that it will continue to process messages. See pause() for notes on performance.</method>
+			<method name="exit()">Signals intention for the actor to terminate. Actors should be terminated by calling exit in the process method if some stop condition is sent to the actor.</method>
 		</construct>
 		<construct name="Selector" java="Selector&lt;Message_Type&gt;">
 			<description>A special actor with multiple numbered mailboxes, that can enable or disable the processing of messages from any mailbox.</description>
@@ -57,7 +57,7 @@
 			<usedwith>async</usedwith>
 			<usedwith>newSearchEureka</usedwith>
 			<usedwith>newExtremaEureka</usedwith>
-			<usedwith>newCountEureka</description>
+			<usedwith>newCountEureka</usedwith>
 			<usedwith>newTimerEureka</usedwith>
 		</construct>
 		<construct name="Finish Eureka" java="finish (eureka)">

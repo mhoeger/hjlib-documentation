@@ -225,29 +225,4 @@
 		<thing>Locks</thing>
 		<note>A lock only allows one process to access the resource at one point in time, while a semaphore allows a given number of processes to access the resource simultaneously.</note>
 	</pair>
-	<pair>
-		<thing></thing>
-		<thing></thing>
-		<note></note>
-	</pair>
-	<pair>
-		<thing></thing>
-		<thing></thing>
-		<note></note>
-	</pair>
-	<pair>
-		<thing></thing>
-		<thing></thing>
-		<note></note>
-	</pair>
-	<pair>
-		<thing></thing>
-		<thing></thing>
-		<note></note>
-	</pair>
-	<pair>
-		<thing></thing>
-		<thing></thing>
-		<note></note>
-	</pair>
 </relatedconstructs>
