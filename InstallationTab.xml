@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tab name="Installation Guide" dropdown="Setup">
 	<instruction name="Java 8 Setup">
-		<step>You may already have Java 8 installed on your computer. To check whether you have Java 8 installed on your machine, go to the command line and type the following java -version. If you see something as follows:
-			$ java -version
-			java version "1.8.0_25"
-			Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
-			Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
+		<step>You may already have Java 8 installed on your computer. To check whether you have Java 8 installed on your machine, go to the command line and type the following java -version. You may see something as follows:
+			<code>
+				$ java -version
+				java version "1.8.0_25"
+				Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
+				Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
+			</code>
 		</step>
-		<step>If the Java version shows 1.8.*, you already have Java 8 installed on your machine. If you do have Java 8 already installed on your machine, please skip to Maven setup.</step>
-		<step>If you do not already have it installed, you will need a Java 8 installation on your machine and have your JAVA HOME and PATH point to the new installation. Java 8 can be downloaded and installed from the Oracle website.
+		<step>If the Java version shows 1.8.*, you already have Java 8 installed on your machine. If you do have Java 8 already installed on your machine, please skip to Maven setup. If you do not already have it installed, you will need a Java 8 installation on your machine and have your JAVA HOME and PATH point to the new installation. Java 8 can be downloaded and installed from the Oracle website.
 			<quote>
 				For Macs: To set up environment variables on your machine, a .bash_profile needs to be created and edited; please refer to this website for instructions. Here is an example of what should be on your machine’s .bash_profile:
 				<code>
