@@ -34,7 +34,7 @@
 	</list>
 	<list name="Unit 7: Threads &amp; Locks">
 		<item>Java Threads</item>
-		<item>ForkJoin</item>
+		<item>Fork-Join</item>
 		<item>Synchronized Statements &amp; Methods</item>
 		<item>Reentrant Lock</item>
 		<item>Read-Write Lock</item>
